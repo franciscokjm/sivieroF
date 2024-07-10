@@ -9,3 +9,16 @@
 
 #include <Arduino.h>
 
+const int sens = 4;
+
+void setup(){
+    Serial.begin(115200);
+    pinMode(sens, INPUT);
+
+}
+
+void loop(){
+
+    Serial.print(digitalRead(sens));
+    delay(1000);
+}
