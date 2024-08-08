@@ -1,24 +1,146 @@
-//Programa desenvolvido para automação de sons descritivos de peças anatômicas.
-//MCU: Espressif ESP WROOM 32
-//IDE: Visual Studio Code () e Platofórmio 
-//Desenvolvedor: Kelliton J M francisco
-//Responsável: Fabio Siviero
-//Laboratório de de Biologia do Desenvolvimento de Insetos
-//Departamento de Biologia Celular e do Desenvolvimento
-//Instituto de Ciências Biológicas - USP           
+/***************************************************
+ Program to sensing touch and auto explain from coustom sound.
 
-#include <Arduino.h>
+****************************************************
+ Inclusive Education Materials Project
 
-const int sens = 4;
+ Responsable Reasercher: Prof. Dr. Fabio Siviero | fsiviero@usp.br
+ Firmware develop: Dr. Kelliton J M Francisco | kelliton@usp.br
 
-void setup(){
-    Serial.begin(115200);
-    pinMode(sens, INPUT);
+ Insect Development Biology Laboratory
+ Multiusers Laboratory
 
+ Department of Cell and Developmental Biology
+ Institute of Biomedical Sciences
+  
+ ****************************************************/
+
+#include "Arduino.h"
+#include "DFRobotDFPlayerMini.h"
+
+#if (defined(ARDUINO_AVR_UNO) || defined(ESP8266))   // Using a soft serial port
+#include <SoftwareSerial.h>
+SoftwareSerial softSerial(/*rx =*/4, /*tx =*/5);
+#define FPSerial softSerial
+#else
+#define FPSerial Serial1
+#endif
+
+DFRobotDFPlayerMini myDFPlayer;
+void printDetail(uint8_t type, int value);
+
+void setup()
+{
+#if (defined ESP32)
+  FPSerial.begin(9600, SERIAL_8N1, /*rx =*/GPIO_NUM_3, /*tx =*/GPIO_NUM_1);
+#else
+  FPSerial.begin(9600);
+#endif
+
+  Serial.begin(115200);
+
+  Serial.println();
+  Serial.println(F("DFRobot DFPlayer Mini Demo"));
+  Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
+  
+  if (!myDFPlayer.begin(FPSerial, /*isACK = */true, /*doReset = */true)) {  //Use serial to communicate with mp3.
+    Serial.println(F("Unable to begin:"));
+    Serial.println(F("1.Please recheck the connection!"));
+    Serial.println(F("2.Please insert the SD card or USB drive!"));
+    while(true){
+      delay(0); // Code to compatible with ESP8266 watch dog.
+    }
+  }
+  Serial.println(F("DFPlayer Mini online."));
 }
 
-void loop(){
+void loop()
+{
+  static unsigned long timer = millis();
 
-    Serial.print(digitalRead(sens));
-    delay(1000);
+  if (millis() - timer > 3000) {
+    timer = millis();
+    
+    int value;
+
+//    value = myDFPlayer.readState(); //read mp3 state
+//    value = myDFPlayer.readVolume(); //read current volume
+//    value = myDFPlayer.readEQ(); //read EQ setting
+//    value = myDFPlayer.readFileCounts(); //read all file counts in SD card
+//    value = myDFPlayer.readCurrentFileNumber(); //read current play file number
+    value = myDFPlayer.readFileCountsInFolder(3); //read file counts in folder SD:/03
+    
+    if (value == -1) {  //Error while Reading.
+      printDetail(myDFPlayer.readType(), myDFPlayer.read());
+    }
+    else{ //Successfully get the result.
+      Serial.println(value);
+    }
+  }
+  
+  if (myDFPlayer.available()) {
+    printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+  }
+}
+
+void printDetail(uint8_t type, int value){
+  switch (type) {
+    case TimeOut:
+      Serial.println(F("Time Out!"));
+      break;
+    case WrongStack:
+      Serial.println(F("Stack Wrong!"));
+      break;
+    case DFPlayerCardInserted:
+      Serial.println(F("Card Inserted!"));
+      break;
+    case DFPlayerCardRemoved:
+      Serial.println(F("Card Removed!"));
+      break;
+    case DFPlayerCardOnline:
+      Serial.println(F("Card Online!"));
+      break;
+    case DFPlayerUSBInserted:
+      Serial.println("USB Inserted!");
+      break;
+    case DFPlayerUSBRemoved:
+      Serial.println("USB Removed!");
+      break;
+    case DFPlayerPlayFinished:
+      Serial.print(F("Number:"));
+      Serial.print(value);
+      Serial.println(F(" Play Finished!"));
+      break;
+    case DFPlayerError:
+      Serial.print(F("DFPlayerError:"));
+      switch (value) {
+        case Busy:
+          Serial.println(F("Card not found"));
+          break;
+        case Sleeping:
+          Serial.println(F("Sleeping"));
+          break;
+        case SerialWrongStack:
+          Serial.println(F("Get Wrong Stack"));
+          break;
+        case CheckSumNotMatch:
+          Serial.println(F("Check Sum Not Match"));
+          break;
+        case FileIndexOut:
+          Serial.println(F("File Index Out of Bound"));
+          break;
+        case FileMismatch:
+          Serial.println(F("Cannot Find File"));
+          break;
+        case Advertise:
+          Serial.println(F("In Advertise"));
+          break;
+        default:
+          break;
+      }
+      break;
+    default:
+      break;
+  }
+  
 }
