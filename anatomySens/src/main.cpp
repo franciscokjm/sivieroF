@@ -1,7 +1,7 @@
 /***************************************************
  Program to sensing touch and auto explain from coustom sound.
-
 ****************************************************
+
  Inclusive Education Materials Project
 
  Responsable Reasercher: Prof. Dr. Fabio Siviero | fsiviero@usp.br
