@@ -32,7 +32,7 @@ void printDetail(uint8_t type, int value);
 void setup()
 {
 #if (defined ESP32)
-  FPSerial.begin(9600, SERIAL_8N1, /*rx =*/GPIO_NUM_3, /*tx =*/GPIO_NUM_1);
+  FPSerial.begin(9600, SERIAL_8N1, /*rx =*/16, /*tx =*/17);
 #else
   FPSerial.begin(9600);
 #endif
@@ -63,10 +63,10 @@ void loop()
     
     int value;
 
-//    value = myDFPlayer.readState(); //read mp3 state
+    value = myDFPlayer.readState(); //read mp3 state
 //    value = myDFPlayer.readVolume(); //read current volume
 //    value = myDFPlayer.readEQ(); //read EQ setting
-//    value = myDFPlayer.readFileCounts(); //read all file counts in SD card
+    value = myDFPlayer.readFileCounts(); //read all file counts in SD card
 //    value = myDFPlayer.readCurrentFileNumber(); //read current play file number
     value = myDFPlayer.readFileCountsInFolder(3); //read file counts in folder SD:/03
     
