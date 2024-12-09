@@ -57,11 +57,17 @@ void setup(){
 
 void loop(){
   valSens8 = digitalRead(Sens8Pin);
+  Serial.println("fora do if 1 loop");
   if (!valSens8 && flagEndPlay){
-    myDFPlayer.play(1);
-    Serial.println("Playing audio 1");
+    //myDFPlayer.EQ(0);
+    myDFPlayer.play(001);
+    //myDFPlayer.volume(20); //set volume from 0 to 30
+    //myDFPlayer.enableDAC();  //Enable On-chip DAC
+    //myDFPlayer.outputSetting(true, 15); //output setting, enable the output and set the gain to 15
+    //Serial.println("Playing audio 1");
     flagEndPlay = false;
-    }
+    Serial.println("dentro if 1");
+  }
   
   delay(100);
     static unsigned long timer = millis();
@@ -70,24 +76,30 @@ void loop(){
     timer = millis();
     
     int value;
+    int volValue;
+    int eqValue;
+    int rdValue;
+    int countsValue;
 
     value = myDFPlayer.readState(); //read mp3 state
-    //value = myDFPlayer.readVolume(); //read current volume  
-    //value = myDFPlayer.readEQ(); //read EQ setting
-    //value = myDFPlayer.readFileCounts(); //read all file counts in SD card
-    //value = myDFPlayer.readCurrentFileNumber(); //read current play file number
+    //volValue = myDFPlayer.readVolume(); //read mp3 state
+    //eqValue = myDFPlayer.readEQ(); //read EQ setting
+    //countsValue = myDFPlayer.readFileCounts(); //read all file counts in SD card
+    //rdValue = myDFPlayer.readCurrentFileNumber(); //read current play file number
     //value = myDFPlayer.readFileCountsInFolder(1); //read file counts in folder SD:/03
-    
+    Serial.println("dentro if 2");
     if (value == -1) {  //Error while Reading.
-      printDetail(myDFPlayer.readType(), myDFPlayer.read());
+      printDetail(myDFPlayer.readType(), myDFPlayer.read()); 
+      Serial.println("dentro if 3");
     }
     else{ //Successfully get the result.
-      Serial.println(value);
+      Serial.println(valSens8);
+      Serial.println("dentro else 1");
     }
   }
   
   if (myDFPlayer.available()) {
-    printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+     printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
   }
 }
 
