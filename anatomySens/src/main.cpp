@@ -1,8 +1,8 @@
 /* 
 Sub-Projeto Modelos Falantes
 
-Responsable: Prof. Dr. Fábio Siviero - fsiviero@usp.br 
-Developer: Dr. Kelliton José Mendonça Francisco - kelliton@usp.br
+Responsable Research: Prof. Dr. Fábio Siviero - fsiviero@usp.br 
+Techinical Developer: Dr. Kelliton José Mendonça Francisco - kelliton@usp.br
 
 Hardware: ESP WROOM 32 and DFPlayer Mini module
 IDE: Visual Studio Code version 1.96.4 and PlatformIO Core 6.1.16
