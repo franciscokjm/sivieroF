@@ -7,8 +7,8 @@ Techinical Developer: Dr. Kelliton José Mendonça Francisco - kelliton@usp.br
 Hardware: ESP WROOM 32 and DFPlayer Mini module
 IDE: Visual Studio Code version 1.96.4 and PlatformIO Core 6.1.16
 
-This sub-project is inscluded in the project "Desenvolvimento de Recursos de Tecnologia Assistiva para Atividades de
-Vida Diária e Ensino de Pessoas com Deficiência Visual".
+This sub-project is inscluded in the project "Desenvolvimento de Recursos de 
+Tecnologia Assistiva para Atividades de Vida Diária e Ensino de Pessoas com Deficiência Visual".
 Coordinator: Prof. Dr. Paulo Eduardo Capel Cardoso 
 
 Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universidade de São Paulo.
