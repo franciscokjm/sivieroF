@@ -14,7 +14,7 @@ Coordinator: Prof. Dr. Paulo Eduardo Capel Cardoso
 Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universidade de São Paulo.
 */
 
-//libraries included
+//included libraries 
 #include "Arduino.h"
 #include "DFRobotDFPlayerMini.h"
 #include "SPI.h"
