@@ -2,16 +2,16 @@
 Sub-Projeto Modelos Falantes
 
 Responsable Research: Prof. Dr. Fábio Siviero - fsiviero@usp.br 
-Techinical Developer: Dr. Kelliton José Mendonça Francisco - kelliton@usp.br
+Techinical Developer: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
 
 Hardware: ESP WROOM 32 and DFPlayer Mini module
 IDE: Visual Studio Code version 1.96.4 and PlatformIO Core 6.1.16
 
 This sub-project is inscluded in the project "Desenvolvimento de Recursos de 
-Tecnologia Assistiva para Atividades de Vida Diária e Ensino de Pessoas com Deficiência Visual".
+Tecnologia Assistiva para Atividades de Vida Diaria e Ensino de Pessoas com Deficiencia Visual".
 Coordinator: Prof. Dr. Paulo Eduardo Capel Cardoso 
 
-Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universidade de São Paulo.
+Projeto financiado pela Pro-Reitoria de Pesquisa e Inovacao da Universidade de Sao Paulo.
 */
 
 //included libraries 
@@ -69,14 +69,19 @@ void setup()
   Serial.println(myDFPlayer.readState()); //read mp3 state
   delay(3000); //delay of 3000s
   //myDFPlayer.play(0);  //read file 0: Welcome mesage
+  //digitalWrite(pinSens0,HIGH);
+
 }
 
 void loop()
 {
   stS0 = analogRead(pinSens0); 
-  if (stS0<3500){
-   myDFPlayer.play(1);  //read file 1
-  } 
+  Serial.print(">var1:");
+  Serial.print(stS0);
+  Serial.println();
+  //if (stS0==LOW){
+ //  myDFPlayer.play(1);  //read file 1
+  //} 
   /*
    stS1 = analogRead(pinSens1); 
    if (stS1<3500){
