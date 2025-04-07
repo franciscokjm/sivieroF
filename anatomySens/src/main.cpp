@@ -41,6 +41,8 @@ int valtch0,valtch1,valtch2,valtch3,valtch4,valtch5,valtch6,valtch7,valtch8;
 int valtch[] = {valtch0,valtch1,valtch2,valtch3,valtch4,valtch5,valtch6,valtch7,valtch8};
 int tch[] = {tch0,tch1,tch2,tch3,tch4,tch5,tch6,tch7,tch8};
 
+//CRIAR ROTINA DE MENU
+
 
 DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
