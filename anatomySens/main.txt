@@ -25,27 +25,8 @@ SoftwareSerial softSerial(/*rx =*/10, /*tx =*/11);
 #define FPSerial Serial1
 #endif
 
-//Touch Sensor pins
-#define tch0 GPIO_NUM_4
-#define tch1 GPIO_NUM_2
-#define tch2 GPIO_NUM_15
-#define tch3 GPIO_NUM_13
-#define tch4 GPIO_NUM_12
-#define tch5 GPIO_NUM_14
-#define tch6 GPIO_NUM_27
-#define tch7 GPIO_NUM_33
-#define tch8 GPIO_NUM_32
-
-//Variables to scan Touch Sensors
-int valtch0,valtch1,valtch2,valtch3,valtch4,valtch5,valtch6,valtch7,valtch8;
-int valtch[] = {valtch0,valtch1,valtch2,valtch3,valtch4,valtch5,valtch6,valtch7,valtch8};
-int tch[] = {tch0,tch1,tch2,tch3,tch4,tch5,tch6,tch7,tch8};
-
-
 DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
-void selectMusic(int numMusic);
-void readtcSensors();
 
 void setup()
 {
@@ -80,32 +61,23 @@ void loop()
 {
   static unsigned long timer = millis();
 
-
+  /*
+  if (millis() - timer > 3000) {
+    timer = millis();
+    myDFPlayer.play(2);  //Play next mp3 every 3 second.
+  }
+  myDFPlayer.volume(15);  //Set volume value. From 0 to 30
+  */
+  //myDFPlayer.play(2);  //Play the first mp3
+  //delay(1000);
+  //action(2);
 
   if (myDFPlayer.available()) {
-    readtcSensors();
-    //myDFPlayer.play(2); desabilitado para testes
+    myDFPlayer.play(2);
     printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
   }
 }
 
-void readtcSensors(){
-
-  for(int i=0; i<9; i++){
-    
-    //USAR AS VARIÁVEIS CRIADAS USANDO ARRAY PARA VARRER AS PORTAS DOS SENSORES.
-
-  }
-
-}
-
-//Function to select the music play from DFPlayer Mini
-void selectMusic(int numMusic){
-  myDFPlayer.play(numMusic);
-
-}
-
-//Function to select the message from microSD
 void printDetail(uint8_t type, int value){
   switch (type) {
     case TimeOut:
