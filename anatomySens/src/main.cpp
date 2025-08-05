@@ -25,7 +25,7 @@ SoftwareSerial softSerial(/*rx =*/10, /*tx =*/11);
 #define FPSerial Serial1
 #endif
 
-//Touch Sensor pins
+/*Touch Sensor pins
 #define tch0 GPIO_NUM_4
 #define tch1 GPIO_NUM_2
 #define tch2 GPIO_NUM_15
@@ -35,19 +35,22 @@ SoftwareSerial softSerial(/*rx =*/10, /*tx =*/11);
 #define tch6 GPIO_NUM_27
 #define tch7 GPIO_NUM_33
 #define tch8 GPIO_NUM_32
+*/
+
+//int tchPin[] = {GPIO_NUM_4, GPIO_NUM_2, GPIO_NUM_15,GPIO_NUM_13,
+ //GPIO_NUM_12, GPIO_NUM_14, GPIO_NUM_27, GPIO_NUM_33, GPIO_NUM_32};
+
+int tchPin[8] = {4, 15, 13, 12, 14, 27, 33, 32};
 
 //Variables to scan Touch Sensors
-int valtch0,valtch1,valtch2,valtch3,valtch4,valtch5,valtch6,valtch7,valtch8;
-int valtch[] = {valtch0,valtch1,valtch2,valtch3,valtch4,valtch5,valtch6,valtch7,valtch8};
-int tch[] = {tch0,tch1,tch2,tch3,tch4,tch5,tch6,tch7,tch8};
-
-//CRIAR ROTINA DE MENU
-
+int valtch[8] = {};
+int track = 0;
+boolean flagPlay = true;
+byte volPlayer = 30;
 
 DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
-void selectMusic(int numMusic);
-void readtcSensors();
+void readthcSensors();
 
 void setup()
 {
@@ -62,8 +65,9 @@ void setup()
   Serial.println();
   Serial.println(F("DFRobot DFPlayer Mini Demo"));
   Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
+  delay(5000);
 
-  if (!myDFPlayer.begin(FPSerial, /*isACK = */true, /*doReset = */true)) {  //Use serial to communicate with mp3.
+  if (!myDFPlayer.begin(FPSerial, /*isACK = */true, /*doReset = */false)) {  //Use serial to communicate with mp3.
     Serial.println(F("Unable to begin:"));
     Serial.println(F("1.Please recheck the connection!"));
     Serial.println(F("2.Please insert the SD card!"));
@@ -73,38 +77,49 @@ void setup()
   }
   Serial.println(F("DFPlayer Mini online."));
 
-  myDFPlayer.volume(15);  //Set volume value. From 0 to 30
-  myDFPlayer.play(1);  //Play the first mp3
-  delay(3000);
+  myDFPlayer.volume(volPlayer);  //Set volume value. From 0 to 30
+  //myDFPlayer.play(track);  //Play the first mp3
+  //printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+  //delay(3000);
 }
 
 void loop()
 {
   static unsigned long timer = millis();
-
-
-
+  //Serial.print("mp3Player NOT available");
   if (myDFPlayer.available()) {
-    readtcSensors();
-    //myDFPlayer.play(2); desabilitado para testes
-    printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
-  }
-}
-
-void readtcSensors(){
-
-  for(int i=0; i<9; i++){
+    Serial.println ("mp3Player available");
+    readthcSensors();
+    Serial.print("flagPlay: ");
+    Serial.println(flagPlay);
+    if (flagPlay){
+      myDFPlayer.play(track); 
+      printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+      flagPlay=false;
+    }
     
-    //USAR AS VARIÁVEIS CRIADAS USANDO ARRAY PARA VARRER AS PORTAS DOS SENSORES.
-
   }
+},3
 
-}
 
-//Function to select the music play from DFPlayer Mini
-void selectMusic(int numMusic){
-  myDFPlayer.play(numMusic);
-
+void readthcSensors(){
+  //Serial.println("ReadTCSensor: ");
+  delay(500);
+  for(int i=0; i<8; i++){
+    valtch[i] = touchRead(tchPin[i]);
+    Serial.print("Sensor: ");
+    Serial.print(i);
+    Serial.print(" : ");
+    byte val = valtch[i];
+    Serial.println(val);
+    if (val < 35){
+      track = i+1;
+      Serial.print("Track: ");
+      Serial.println(track);
+      flagPlay = true;
+      break;
+    }
+  }
 }
 
 //Function to select the message from microSD
@@ -169,4 +184,7 @@ void printDetail(uint8_t type, int value){
   }
 
 }
+
+
+/// fazer o beep
 
