@@ -17,8 +17,8 @@ Equipe de desenvolvimento:
 Laboratórios:
 
 1. 
-2. [Laboratório de Tecnologias no Ensino de Ciências Biomédicas](www.atin.icb.usp.br)
-3. [Setor de Manutenção e Instrumentação Científica](www.sites.usp.br/mic)
+2. Laboratório de Tecnologias no Ensino de Ciências Biomédicas - www.atin.icb.usp.br
+3. Setor de Manutenção e Instrumentação Científica - www.sites.usp.br/mic
 
 Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universade de São Paulo
 
