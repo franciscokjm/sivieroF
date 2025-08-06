@@ -10,13 +10,15 @@
 
 Equipe de desenvolvimento:
 
-  Coordenador Geral: Prof. Dr. Paulo Eduardo Capel Cardoso - paulocapel@usp.br
-  Pesquisador Responsável: Prof. Dr. Fábio Siviero - fsiviero@usp.br
-  Especialista em Laboratório: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
+  1. Coordenador Geral: Prof. Dr. Paulo Eduardo Capel Cardoso - paulocapel@usp.br
+  2. Pesquisador Responsável: Prof. Dr. Fábio Siviero - fsiviero@usp.br
+  3. Especialista em Laboratório: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
 
 Laboratórios:
-  [Laboratório de Tecnologias no Ensino de Ciências Biomédicas](www.atin.icb.usp.br)
-  [Setor de Manutenção e Instrumentação Científica](www.sites.usp.br/mic)
+
+1. 
+2. [Laboratório de Tecnologias no Ensino de Ciências Biomédicas](www.atin.icb.usp.br)
+3. [Setor de Manutenção e Instrumentação Científica](www.sites.usp.br/mic)
 
 Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universade de São Paulo
 
