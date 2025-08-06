@@ -32,22 +32,23 @@ int tchPin[8] = {4, 15, 13, 12, 14, 27, 33, 32};
 int valtch[8] = {};
 int track = 0;
 boolean flagPlay = true;
-byte volPlayer = 30;
-byte setLimtSens = 20;
+byte volPlayer = 30; //Volume to mp3Player
+byte setLimtSens = 20; // Sensibility limit to touch sensor
 
 DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
 void readthcSensors();
 
+//Setup of parameters
 void setup()
 {
 #if (defined ESP32)
-  FPSerial.begin(9600, SERIAL_8N1, /*rx =*/16, /*tx =*/17);
+  FPSerial.begin(9600, SERIAL_8N1, /*rx =*/16, /*tx =*/17); //Baud rate of Serial communication between ESP32 and the DFPlayer module
 #else
   FPSerial.begin(9600);
 #endif
 
-  Serial.begin(9600);
+  Serial.begin(9600); //Baud rate of Serial communication between the disposictive and the computer
 
   Serial.println();
   Serial.println(F("DFRobot DFPlayer Mini Demo"));
@@ -65,34 +66,29 @@ void setup()
   Serial.println(F("DFPlayer Mini online."));
 
   myDFPlayer.volume(volPlayer);  //Set volume value. From 0 to 30
-  //myDFPlayer.play(0);  //Play the first mp3; "Plin"
   printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
-  //delay(3000);
 }
 
+//Main program
 void loop()
 {
   static unsigned long timer = millis();
   delay(500);
-  //Serial.println("mp3Player NOT available");
   if (myDFPlayer.available()) {
     Serial.println ("mp3Player available");
     readthcSensors();
     Serial.print("flagPlay: ");
     Serial.println(flagPlay);
     if (flagPlay){
-      myDFPlayer.play(track); 
-      //printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+      myDFPlayer.play(track); //Play track sound
       flagPlay=false;
     }
     
   }
 }
 
-
+//Read the sensor and select the track to play
 void readthcSensors(){
-  //Serial.println("ReadTCSensor: ");
-  //delay(500);
   for(int i=0; i<8; i++){
     valtch[i] = touchRead(tchPin[i]);
     Serial.print("Sensor: ");
@@ -100,6 +96,8 @@ void readthcSensors(){
     Serial.print(" : ");
     byte nSensor = valtch[i];
     Serial.println(nSensor);
+    
+    //Select track to play
     if (nSensor < setLimtSens){
       track = i+1;
       Serial.print("Track: ");
@@ -172,7 +170,3 @@ void printDetail(uint8_t type, int value){
   }
 
 }
-
-
-/// fazer o beep
-
