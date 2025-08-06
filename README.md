@@ -1,18 +1,22 @@
 # Sub-Projeto Modelos Falantes
-## Projeto de Desenvolvimento de Recursos de Tecnologia Assistiva para Atividades de Vida Diaria e Ensino de Pessoas com Deficiencia Visual
+**_Projeto de Desenvolvimento de Recursos de Tecnologia Assistiva para Atividades de Vida Diaria e Ensino de Pessoas com Deficiencia Visual_**
 
-### Neste repositório você encontrará:
+#### Neste repositório você encontrará:
 
-* **Lista de Materiais**
-* **Firmware**
-* **Diagrama Elétrico** e arquivos para confecção da placa de circuito impresso
+* Lista de Materiais
+* Firmware
+* Diagrama Elétrico e arquivos para confecção da placa de circuito impresso
 
 
 Equipe de desenvolvimento:
 
   Coordenador Geral: Prof. Dr. Paulo Eduardo Capel Cardoso - paulocapel@usp.br
-  Pesquisador Responsável: Prof. Dr. Fábio Siviero - fsiviero@usp.br 
+  Pesquisador Responsável: Prof. Dr. Fábio Siviero - fsiviero@usp.br
   Especialista em Laboratório: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
+
+Laboratórios:
+  [Laboratório de Tecnologias no Ensino de Ciências Biomédicas](www.atin.icb.usp.br)
+  [Setor de Manutenção e Instrumentação Científica](www.sites.usp.br/mic)
 
 Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universade de São Paulo
 
