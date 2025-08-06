@@ -25,21 +25,7 @@ SoftwareSerial softSerial(/*rx =*/10, /*tx =*/11);
 #define FPSerial Serial1
 #endif
 
-/*Touch Sensor pins
-#define tch0 GPIO_NUM_4
-#define tch1 GPIO_NUM_2
-#define tch2 GPIO_NUM_15
-#define tch3 GPIO_NUM_13
-#define tch4 GPIO_NUM_12
-#define tch5 GPIO_NUM_14
-#define tch6 GPIO_NUM_27
-#define tch7 GPIO_NUM_33
-#define tch8 GPIO_NUM_32
-*/
-
-//int tchPin[] = {GPIO_NUM_4, GPIO_NUM_2, GPIO_NUM_15,GPIO_NUM_13,
- //GPIO_NUM_12, GPIO_NUM_14, GPIO_NUM_27, GPIO_NUM_33, GPIO_NUM_32};
-
+//Touch Sensor pins
 int tchPin[8] = {4, 15, 13, 12, 14, 27, 33, 32};
 
 //Variables to scan Touch Sensors
@@ -47,6 +33,7 @@ int valtch[8] = {};
 int track = 0;
 boolean flagPlay = true;
 byte volPlayer = 30;
+byte setLimtSens = 20;
 
 DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
@@ -60,7 +47,7 @@ void setup()
   FPSerial.begin(9600);
 #endif
 
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   Serial.println();
   Serial.println(F("DFRobot DFPlayer Mini Demo"));
@@ -78,15 +65,16 @@ void setup()
   Serial.println(F("DFPlayer Mini online."));
 
   myDFPlayer.volume(volPlayer);  //Set volume value. From 0 to 30
-  //myDFPlayer.play(track);  //Play the first mp3
-  //printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+  //myDFPlayer.play(0);  //Play the first mp3; "Plin"
+  printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
   //delay(3000);
 }
 
 void loop()
 {
   static unsigned long timer = millis();
-  //Serial.print("mp3Player NOT available");
+  delay(500);
+  //Serial.println("mp3Player NOT available");
   if (myDFPlayer.available()) {
     Serial.println ("mp3Player available");
     readthcSensors();
@@ -94,25 +82,25 @@ void loop()
     Serial.println(flagPlay);
     if (flagPlay){
       myDFPlayer.play(track); 
-      printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+      //printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
       flagPlay=false;
     }
     
   }
-},3
+}
 
 
 void readthcSensors(){
   //Serial.println("ReadTCSensor: ");
-  delay(500);
+  //delay(500);
   for(int i=0; i<8; i++){
     valtch[i] = touchRead(tchPin[i]);
     Serial.print("Sensor: ");
     Serial.print(i);
     Serial.print(" : ");
-    byte val = valtch[i];
-    Serial.println(val);
-    if (val < 35){
+    byte nSensor = valtch[i];
+    Serial.println(nSensor);
+    if (nSensor < setLimtSens){
       track = i+1;
       Serial.print("Track: ");
       Serial.println(track);
