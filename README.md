@@ -12,7 +12,7 @@ Os modelos falantes
 
 ##### Equipe de desenvolvimento:
 
- _Prof. Dr. Fábio Siviero<sup>1</sup>, Dr. Kelliton Jose Mendonca Francisco<sup>2</sup>, Prof. Dr. Paulo Eduardo Capel Cardoso<sup>3</sup>_
+ _Prof. Dr. Fábio Siviero <sup>1</sup>, Dr. Kelliton Jose Mendonca Francisco <sup>2</sup>, Prof. Dr. Paulo Eduardo Capel Cardoso <sup>3</sup>_
 
   1. Departamento de Biologia Celular e do Desenvolvimento, USP, fsiviero@usp.br | www.atin.icb.usp.br
   2. Departamento de Biologia Celular e do Desenvolvimento, USP, kelliton@usp.br | www.sites.usp.br/mic
