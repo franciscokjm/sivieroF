@@ -16,7 +16,7 @@ Os modelos falantes
 
   1. Departamento de Biologia Celular e do Desenvolvimento, USP, fsiviero@usp.br | www.atin.icb.usp.br
   2. Departamento de Biologia Celular e do Desenvolvimento, USP, kelliton@usp.br | www.sites.usp.br/mic
-  3. Departamento de Biomateriais e Biologia Oral, USP, paulocapel@usp.br | 
+  3. Departamento de Biomateriais e Biologia Oral, USP, paulocapel@usp.br | https://site.fo.usp.br/pessoas/docentes/paulo-eduardo-capel-cardoso/
 
 Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universade de São Paulo - www.prpi.usp.br
 
