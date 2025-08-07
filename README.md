@@ -7,18 +7,16 @@
 * Firmware
 * Diagrama Elétrico e arquivos para confecção da placa de circuito impresso
 
+##### Sobre os Modelos Falantes:
+Os modelos falantes 
 
 ##### Equipe de desenvolvimento:
 
-  1. Coordenador Geral: Prof. Dr. Paulo Eduardo Capel Cardoso - paulocapel@usp.br
-  2. Pesquisador Responsável: Prof. Dr. Fábio Siviero - fsiviero@usp.br
-  3. Especialista em Laboratório: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
+ _Prof. Dr. Fábio Siviero, Dr. Kelliton Jose Mendonca Francisco, Prof. Dr. Paulo Eduardo Capel Cardoso_
 
-##### Laboratórios:
-
-1. 
-2. Laboratório de Tecnologias no Ensino de Ciências Biomédicas - www.atin.icb.usp.br
-3. Setor de Manutenção e Instrumentação Científica - www.sites.usp.br/mic
+  1. Departamento de Biologia Celular e do Desenvolvimento, USP, fsiviero@usp.br | www.atin.icb.usp.br
+  2. Departamento de Biologia Celular e do Desenvolvimento, USP, kelliton@usp.br | www.sites.usp.br/mic
+  3. Departamento de Biomateriais e Biologia Oral, USP, paulocapel@usp.br | 
 
 Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universade de São Paulo - www.prpi.usp.br
 
