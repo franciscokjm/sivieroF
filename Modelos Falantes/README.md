@@ -4,8 +4,8 @@
 ##### Neste repositório você encontrará:
 
 * Lista de Materiais
-* Firmware
-* Diagrama Elétrico e arquivos para confecção da placa de circuito impresso
+* Firmware (Visual Studio Code version 1.96.4 e PlatformIO Core 6.1.16)
+* Informações de hardware (Diptrace 4.3.0.5)
 
 ##### Sobre os Modelos Falantes:
 &#160;&#160;&#160;&#160;&#160;Apesar de décadas de políticas públicas voltadas à inclusão, milhões de brasileiros com
