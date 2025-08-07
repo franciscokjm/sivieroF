@@ -1,4 +1,4 @@
-# Projetos desenvolvidos pelo Laboratório de Tecnologias no Ensino de Ciências Biomédicas 
+# Laboratório de Tecnologias no Ensino de Ciências Biomédicas 
 
 ##### Neste repositório você encontrará:
 
