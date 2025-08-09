@@ -2,7 +2,7 @@
 
 #### Neste repositório você encontrará:
 
-* [Projeto Modelos Falantes](Modelos Falantes)
+* [Projeto Modelos Falantes](https://github.com/franciscokjm/sivieroF/tree/main/Modelos%20Falantes)
 
 ##### Palavras-chave: 
 
