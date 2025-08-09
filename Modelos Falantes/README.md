@@ -3,9 +3,9 @@
 
 ##### Neste repositório você encontrará:
 
-* Lista de Materiais
-* Firmware (Visual Studio Code version 1.96.4 e PlatformIO Core 6.1.16)
-* Informações de hardware (Diptrace 4.3.0.5)
+* [Lista de Materiais](https://github.com/franciscokjm/sivieroF/blob/main/Modelos%20Falantes/Lista%20de%20materiais.xlsx)
+* [Firmware](https://github.com/franciscokjm/sivieroF/tree/main/Modelos%20Falantes/Firmware) (Visual Studio Code version 1.96.4 e PlatformIO Core 6.1.16)
+* [Informações de hardware](https://github.com/franciscokjm/sivieroF/tree/main/Modelos%20Falantes/Hardware) (Diptrace 4.3.0.5)
 
 ##### Sobre os Modelos Falantes:
 &#160;&#160;&#160;&#160;&#160;Apesar de décadas de políticas públicas voltadas à inclusão, milhões de brasileiros com
