@@ -18,7 +18,7 @@ protótipos exibiram operação autônoma, baixo custo e maior compreensão tát
 por usuário de baixa visão. A solução elaborada integra tecnologias abertas à educação,
 desenvolvendo tecnologia assistiva e oferecendo aprendizagem inclusiva e escalável. 
 
-&#160;&#160;&#160;&#160;&#160;Para saber mais confira em www.sites.usp.br/latecbio
+&#160;&#160;&#160;&#160;&#160;Para saber mais, confira em www.sites.usp.br/latecbio
 
 ##### Palavras-chave: 
 &#160;&#160;&#160;&#160;&#160;Inclusão educacional, aprendizagem tátil, democratização do conhecimento.
