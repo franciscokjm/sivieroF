@@ -4,11 +4,11 @@
 
 * [Projeto Modelos Falantes](https://github.com/franciscokjm/sivieroF/tree/main/Modelos%20Falantes)
 
-##### Palavras-chave: 
+#### Palavras-chave: 
 
 &#160;&#160;&#160;&#160;&#160;Recursos didáticos, inclusão educacional, aprendizagem tátil, democratização do conhecimento.
 
-##### Mais informações sobre o LaTECBio:
+#### Mais informações sobre o LaTECBio:
 
 &#160;&#160;&#160;&#160;&#160;Prof. Dr. Fábio Siviero, fsiviero@usp.br | www.sites.usp.br/latecbio
 
