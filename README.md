@@ -13,4 +13,4 @@
 &#160;&#160;&#160;&#160;&#160;Prof. Dr. Fábio Siviero, fsiviero@usp.br | www.sites.usp.br/latecbio
 
 
-🤝 _Projeto desenvolvido com apoio do Setor de Manutenção e Instrumentação Científica - MIC | www.sites.usp.br/mic_
+🤝 _Desenvolvido com apoio do Setor de Manutenção e Instrumentação Científica - MIC | www.sites.usp.br/mic_
