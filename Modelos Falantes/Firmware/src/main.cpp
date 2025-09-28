@@ -16,25 +16,19 @@ Grant Project for Pro-Reitoria de Pesquisa e Inovacao da Universidade de Sao Pau
 
 #include "Arduino.h"
 #include "DFRobotDFPlayerMini.h"
-
-#if (defined(ARDUINO_AVR_UNO) || defined(ESP8266))   // Using a soft serial port
-#include <SoftwareSerial.h>
-SoftwareSerial softSerial(/*rx =*/10, /*tx =*/11);
-#define FPSerial softSerial
-#else
-#define FPSerial Serial1
-#endif
+#include "HardwareSerial.h"
 
 //Touch Sensor pins
 int tchPin[8] = {4, 15, 13, 12, 14, 27, 33, 32};
 
-//Variables to scan Touch Sensors
+//Variables to scan Touch Sensors, sensibility sensors and sound volume 
 int valtch[8] = {};
 int track = 0;
 boolean flagPlay = true;
 byte volPlayer = 30; //Volume to mp3Player
-byte setLimtSens = 20; // Sensibility limit to touch sensor
+byte setLimtSens = 25; // Sensibility limit to touch sensor
 
+HardwareSerial dfsd(1);
 DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
 void readthcSensors();
@@ -42,29 +36,29 @@ void readthcSensors();
 //Setup of parameters
 void setup()
 {
-#if (defined ESP32)
-  FPSerial.begin(9600, SERIAL_8N1, /*rx =*/16, /*tx =*/17); //Baud rate of Serial communication between ESP32 and the DFPlayer module
-#else
-  FPSerial.begin(9600);
-#endif
-
+  dfsd.begin(9600, SERIAL_8N1,16,17);  // speed, type, RX, TX
   Serial.begin(9600); //Baud rate of Serial communication between the disposictive and the computer
+  delay(3000);
 
   Serial.println();
   Serial.println(F("DFRobot DFPlayer Mini Demo"));
   Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
   delay(5000);
-
-  if (!myDFPlayer.begin(FPSerial, /*isACK = */true, /*doReset = */false)) {  //Use serial to communicate with mp3.
+  Serial.flush();
+  
+  //if (!myDFPlayer.begin(FPSerial, /*isACK = */true, /*doReset = */true)) {  //Use serial to communicate with mp3.
+  if (!myDFPlayer.begin(dfsd)) {  //Use serial to communicate with mp3.
+    
+    Serial.println(myDFPlayer.readType(),HEX);
     Serial.println(F("Unable to begin:"));
     Serial.println(F("1.Please recheck the connection!"));
     Serial.println(F("2.Please insert the SD card!"));
-    while(true){
-      delay(0); // Code to compatible with ESP8266 watch dog.
-    }
+    while(true);
+    Serial.flush();
   }
   Serial.println(F("DFPlayer Mini online."));
 
+  myDFPlayer.setTimeOut(500);
   myDFPlayer.volume(volPlayer);  //Set volume value. From 0 to 30
   printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
 }
@@ -72,18 +66,22 @@ void setup()
 //Main program
 void loop()
 {
-  static unsigned long timer = millis();
   delay(500);
+  Serial.print("myDFPlayer.available: ");
+  Serial.println(myDFPlayer.available());
+
   if (myDFPlayer.available()) {
-    Serial.println ("mp3Player available");
     readthcSensors();
     Serial.print("flagPlay: ");
     Serial.println(flagPlay);
-    if (flagPlay){
+    if (flagPlay == 1){
       myDFPlayer.play(track); //Play track sound
       flagPlay=false;
     }
-    
+  }
+  else{
+    myDFPlayer.reset();
+    delay(3000);
   }
 }
 
