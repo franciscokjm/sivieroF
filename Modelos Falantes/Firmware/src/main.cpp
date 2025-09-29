@@ -26,7 +26,7 @@ int valtch[8] = {};
 int track = 0;
 boolean flagPlay = true;
 byte volPlayer = 30; //Volume to mp3Player
-byte setLimtSens = 25; // Sensibility limit to touch sensor
+byte setLimtSens = 30; // Sensibility limit to touch sensor
 
 HardwareSerial dfsd(1);
 DFRobotDFPlayerMini myDFPlayer;
@@ -61,6 +61,7 @@ void setup()
   myDFPlayer.setTimeOut(500);
   myDFPlayer.volume(volPlayer);  //Set volume value. From 0 to 30
   printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+  myDFPlayer.reset();
 }
 
 //Main program
@@ -74,6 +75,7 @@ void loop()
     readthcSensors();
     Serial.print("flagPlay: ");
     Serial.println(flagPlay);
+    delay(100);
     if (flagPlay == 1){
       myDFPlayer.play(track); //Play track sound
       flagPlay=false;
