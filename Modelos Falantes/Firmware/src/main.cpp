@@ -26,9 +26,9 @@ int valtch[8] = {};
 int track = 0;
 boolean flagPlay = true;
 byte volPlayer = 30; //Volume to mp3Player
-byte setLimtSens = 30; // Sensibility limit to touch sensor
+byte setLimtSens = 32; // Sensibility limit to touch sensor
 
-HardwareSerial dfsd(1);
+HardwareSerial dfsd(2);
 DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
 void readthcSensors();
@@ -40,41 +40,41 @@ void setup()
   Serial.begin(9600); //Baud rate of Serial communication between the disposictive and the computer
   delay(3000);
 
-  Serial.println();
+  //Serial.println();
   Serial.println(F("DFRobot DFPlayer Mini Demo"));
   Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
-  delay(5000);
-  Serial.flush();
+  delay(3000);
+  //Serial.flush();
   
   //if (!myDFPlayer.begin(FPSerial, /*isACK = */true, /*doReset = */true)) {  //Use serial to communicate with mp3.
   if (!myDFPlayer.begin(dfsd)) {  //Use serial to communicate with mp3.
     
-    Serial.println(myDFPlayer.readType(),HEX);
+    //Serial.println(myDFPlayer.readType(),HEX);
     Serial.println(F("Unable to begin:"));
     Serial.println(F("1.Please recheck the connection!"));
     Serial.println(F("2.Please insert the SD card!"));
     while(true);
-    Serial.flush();
+    //Serial.flush();
   }
   Serial.println(F("DFPlayer Mini online."));
 
   myDFPlayer.setTimeOut(500);
   myDFPlayer.volume(volPlayer);  //Set volume value. From 0 to 30
   printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
-  myDFPlayer.reset();
+  //myDFPlayer.reset();
 }
 
 //Main program
 void loop()
 {
   delay(500);
-  Serial.print("myDFPlayer.available: ");
-  Serial.println(myDFPlayer.available());
+  //Serial.print("myDFPlayer.available: ");
+  //Serial.println(myDFPlayer.available());
 
   if (myDFPlayer.available()) {
     readthcSensors();
-    Serial.print("flagPlay: ");
-    Serial.println(flagPlay);
+    //Serial.print("flagPlay: ");
+    //Serial.println(flagPlay);
     delay(100);
     if (flagPlay == 1){
       myDFPlayer.play(track); //Play track sound
@@ -91,17 +91,19 @@ void loop()
 void readthcSensors(){
   for(int i=0; i<8; i++){
     valtch[i] = touchRead(tchPin[i]);
-    Serial.print("Sensor: ");
-    Serial.print(i);
-    Serial.print(" : ");
+    //Serial.print("Sensor: ");
+    //Serial.print(i);
+    //Serial.print(" : ");
     byte nSensor = valtch[i];
-    Serial.println(nSensor);
+    //Serial.println(nSensor);
+    delayMicroseconds(100);
     
     //Select track to play
     if (nSensor < setLimtSens){
+      delayMicroseconds(100);
       track = i+1;
-      Serial.print("Track: ");
-      Serial.println(track);
+      //Serial.print("Track: ");
+      //Serial.println(track);
       flagPlay = true;
       break;
     }
