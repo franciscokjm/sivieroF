@@ -4,7 +4,7 @@ Sub-Projeto Modelos Falantes
 Responsable Research: Prof. Dr. Fábio Siviero - fsiviero@usp.br 
 Techinical Developer: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
 
-Hardware: ESP WROOM 32 and DFPlayer Mini module
+Hardware: ESP-32-C3 and DFPlayer Mini module
 IDE: Visual Studio Code version 1.96.4 and PlatformIO Core 6.1.16
 
 This sub-project is inscluded in the project "Desenvolvimento de Recursos de 
@@ -16,98 +16,48 @@ Grant Project for Pro-Reitoria de Pesquisa e Inovacao da Universidade de Sao Pau
 
 #include "Arduino.h"
 #include "DFRobotDFPlayerMini.h"
-#include "HardwareSerial.h"
 
-//Touch Sensor pins
-int tchPin[8] = {4, 15, 13, 12, 14, 27, 33, 32};
-
-//Variables to scan Touch Sensors, sensibility sensors and sound volume 
-int valtch[8] = {};
-int track = 0;
-boolean flagPlay = true;
-byte volPlayer = 30; //Volume to mp3Player
-byte setLimtSens = 32; // Sensibility limit to touch sensor
-
-HardwareSerial dfsd(2);
+//Objeto do DFPlayer que usará a o protocolo de comunição UART
 DFRobotDFPlayerMini myDFPlayer;
-void printDetail(uint8_t type, int value);
-void readthcSensors();
 
-//Setup of parameters
-void setup()
-{
-  dfsd.begin(9600, SERIAL_8N1,16,17);  // speed, type, RX, TX
-  Serial.begin(9600); //Baud rate of Serial communication between the disposictive and the computer
-  delay(3000);
+//Pinos reservados para comunicação UART entre a microcontroladora (MCU) e o MP3 Player
+const int rxPin = 20;
+const int txPin = 21;
 
-  //Serial.println();
-  Serial.println(F("DFRobot DFPlayer Mini Demo"));
-  Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
-  delay(3000);
-  //Serial.flush();
-  
-  //if (!myDFPlayer.begin(FPSerial, /*isACK = */true, /*doReset = */true)) {  //Use serial to communicate with mp3.
-  if (!myDFPlayer.begin(dfsd)) {  //Use serial to communicate with mp3.
-    
-    //Serial.println(myDFPlayer.readType(),HEX);
-    Serial.println(F("Unable to begin:"));
-    Serial.println(F("1.Please recheck the connection!"));
-    Serial.println(F("2.Please insert the SD card!"));
-    while(true);
-    //Serial.flush();
+//Pinos de conexão do sensores de toque na ESP32-C3
+const int touchPIN_0 = GPIO_NUM_0; // GPIO0 
+const int touchPIN_1 = GPIO_NUM_1; // GPIO1
+const int touchPIN_3 = GPIO_NUM_3; // GPIO3
+const int touchPIN_4 = GPIO_NUM_4; // GPIO4
+
+int touchTHRESHOLD_A0_max = 3000; //Sensibilidade de corte do sensor A0
+int touchTHRESHOLD_A0_min = 0; //Sensibilidade de corte do sensor A0
+int touchTHRESHOLD_A1_max = 200; //Sensibilidade de corte do sensor A1
+int touchTHRESHOLD_A1_min = 0; //Sensibilidade de corte do sensor A1
+int touchTHRESHOLD_A3_max = 0; //Sensibilidade de corte do sensor A3
+int touchTHRESHOLD_A3_min = 0; //Sensibilidade de corte do sensor A3
+int touchTHRESHOLD_A4_max = 0; //Sensibilidade de corte do sensor A4
+int touchTHRESHOLD_A4_min = 0; //Sensibilidade de corte do sensor A4
+int volPlayer = 30; //Volume do MP3 Player de 0 a 30.
+int valA0, valA1, valA2, valA3, valA4; //valores lidos pelos sensores de A0 a A4
+int delaySens = 100; //Intervalo entre as leituras de casa sensor (ms)
+int delayLoop = 500; //Intervalo entre leityras do bloco Loop (ms) default=10
+boolean currentlyTouched = false;
+
+//Teste From Gemini
+long measureTouch(int pin) {
+  // 1. Descarrega o "circuito"
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin, LOW);
+  delay(1); 
+
+  // 2. Mede o tempo de carregamento
+  long startTime = micros();
+  pinMode(pin, INPUT); // Permite o carregamento
+  while (digitalRead(pin) == LOW) { // Espera o pino subir (se demorar, há mais capacitância)
+    if (micros() - startTime > 10000) return 10000; // Timeout
   }
-  Serial.println(F("DFPlayer Mini online."));
-
-  myDFPlayer.setTimeOut(500);
-  myDFPlayer.volume(volPlayer);  //Set volume value. From 0 to 30
-  printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
-  //myDFPlayer.reset();
-}
-
-//Main program
-void loop()
-{
-  delay(500);
-  //Serial.print("myDFPlayer.available: ");
-  //Serial.println(myDFPlayer.available());
-
-  if (myDFPlayer.available()) {
-    readthcSensors();
-    //Serial.print("flagPlay: ");
-    //Serial.println(flagPlay);
-    delay(100);
-    if (flagPlay == 1){
-      myDFPlayer.play(track); //Play track sound
-      flagPlay=false;
-    }
-  }
-  else{
-    myDFPlayer.reset();
-    delay(3000);
-  }
-}
-
-//Read the sensor and select the track to play
-void readthcSensors(){
-  for(int i=0; i<8; i++){
-    valtch[i] = touchRead(tchPin[i]);
-    //Serial.print("Sensor: ");
-    //Serial.print(i);
-    //Serial.print(" : ");
-    byte nSensor = valtch[i];
-    //Serial.println(nSensor);
-    delayMicroseconds(100);
-    
-    //Select track to play
-    if (nSensor < setLimtSens){
-      delayMicroseconds(100);
-      track = i+1;
-      //Serial.print("Track: ");
-      //Serial.println(track);
-      flagPlay = true;
-      break;
-    }
-  }
+  return micros() - startTime;
 }
 
 //Function to select the message from microSD
@@ -172,3 +122,69 @@ void printDetail(uint8_t type, int value){
   }
 
 }
+
+void setup() {
+  Serial.begin(9600); //Comunicação através do terminal do computador        
+  delay(100);
+  Serial1.begin(9600, SERIAL_8N1, rxPin, txPin); //Comunicação entre a MCU e o MP3 Player.
+  delay(5000);
+
+  if (Serial1.available()) { //comunicação UART ativa entre dispositivos
+    Serial.print("MP3 myDFPlayer on-line, favor aguardar 5s. ");
+    delay(5000);
+  }
+  
+  if (!myDFPlayer.begin(Serial1)) {  //Use serial to communicate with mp3.
+
+    Serial.println(F("MP3 não iniciado corretamente.")); 
+    Serial.println(F("Insira o cartão microSD no leitor e reinicie o dispositivo.")); 
+    while(true);
+    delay(0);
+  }
+  myDFPlayer.volume(volPlayer);  //Ajuste do volume do módulo MP3
+  digitalWrite(touchPIN_0,INPUT_PULLUP);
+  digitalWrite(touchPIN_1,INPUT_PULLUP);
+}
+
+void loop() {
+
+  //Leitura dos sensores Touch
+  valA0 = measureTouch(touchPIN_0);
+  Serial.println(valA0);
+  if (valA0 < touchTHRESHOLD_A0_max) {
+    myDFPlayer.play(1); // Toca o primeiro audio
+    Serial.print("Pino_A0: ");
+    Serial.println(valA0);
+    delay(delaySens); // Delay para evitar toquer sequenciais
+  }
+
+  valA1 = measureTouch(touchPIN_1);
+  Serial.println(valA1);
+  if (valA1 < touchTHRESHOLD_A1_max) {
+    myDFPlayer.play(2); // Toca o segundo audio
+    Serial.print("Pino_A1: ");
+    Serial.println(valA1);
+    delay(delaySens); // Delay para evitar toquer sequenciais
+  }
+
+  valA3 = measureTouch(touchPIN_3);
+   Serial.println(valA3);
+  if (valA3 < touchTHRESHOLD_A3_max) {
+    //myDFPlayer.play(4); // Toca o quarto audio
+    Serial.print("Pino_A3: ");
+    Serial.println(valA3);
+    delay(delaySens); // Delay para evitar toquer sequenciais
+  }
+
+  valA4 = measureTouch(touchPIN_4);
+  Serial.println(valA4);
+  if (valA4 < touchTHRESHOLD_A4_max) {
+    //myDFPlayer.play(5); // Toca o quinto audio
+    Serial.print("Pino_A4: ");
+    Serial.println(valA4);
+    delay(delaySens); // Delay para evitar toquer sequenciais
+  }
+  Serial.println("*");
+  delay(delayLoop);   
+}
+
