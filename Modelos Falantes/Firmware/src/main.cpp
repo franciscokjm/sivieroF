@@ -30,7 +30,7 @@ const int touchPIN_1 = GPIO_NUM_1; // GPIO1
 const int touchPIN_3 = GPIO_NUM_3; // GPIO3
 const int touchPIN_4 = GPIO_NUM_4; // GPIO4
 
-int touchTHRESHOLD_A0_max = 3000; //Sensibilidade de corte do sensor A0
+int touchTHRESHOLD_A0_max = 1000; //Sensibilidade de corte do sensor A0
 int touchTHRESHOLD_A0_min = 0; //Sensibilidade de corte do sensor A0
 int touchTHRESHOLD_A1_max = 200; //Sensibilidade de corte do sensor A1
 int touchTHRESHOLD_A1_min = 0; //Sensibilidade de corte do sensor A1
@@ -40,8 +40,8 @@ int touchTHRESHOLD_A4_max = 0; //Sensibilidade de corte do sensor A4
 int touchTHRESHOLD_A4_min = 0; //Sensibilidade de corte do sensor A4
 int volPlayer = 30; //Volume do MP3 Player de 0 a 30.
 int valA0, valA1, valA2, valA3, valA4; //valores lidos pelos sensores de A0 a A4
-int delaySens = 100; //Intervalo entre as leituras de casa sensor (ms)
-int delayLoop = 500; //Intervalo entre leityras do bloco Loop (ms) default=10
+int delaySens = 500; //Intervalo entre as leituras de casa sensor (ms)
+int delayLoop = 200; //Intervalo entre leityras do bloco Loop (ms) default=10
 boolean currentlyTouched = false;
 
 //Teste From Gemini
@@ -127,30 +127,33 @@ void setup() {
   Serial.begin(9600); //Comunicação através do terminal do computador        
   delay(100);
   Serial1.begin(9600, SERIAL_8N1, rxPin, txPin); //Comunicação entre a MCU e o MP3 Player.
-  delay(5000);
+  delay(3000);
 
   if (Serial1.available()) { //comunicação UART ativa entre dispositivos
     Serial.print("MP3 myDFPlayer on-line, favor aguardar 5s. ");
+    printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+    Serial.println("****");
     delay(5000);
   }
   
   if (!myDFPlayer.begin(Serial1)) {  //Use serial to communicate with mp3.
-
     Serial.println(F("MP3 não iniciado corretamente.")); 
     Serial.println(F("Insira o cartão microSD no leitor e reinicie o dispositivo.")); 
     while(true);
     delay(0);
   }
   myDFPlayer.volume(volPlayer);  //Ajuste do volume do módulo MP3
-  digitalWrite(touchPIN_0,INPUT_PULLUP);
-  digitalWrite(touchPIN_1,INPUT_PULLUP);
+  //myDFPlayer.play(1);  //Play the first mp3
 }
 
 void loop() {
 
+ if (myDFPlayer.available()) {
+    printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+  }
   //Leitura dos sensores Touch
   valA0 = measureTouch(touchPIN_0);
-  Serial.println(valA0);
+  //Serial.println(valA0);
   if (valA0 < touchTHRESHOLD_A0_max) {
     myDFPlayer.play(1); // Toca o primeiro audio
     Serial.print("Pino_A0: ");
@@ -159,16 +162,16 @@ void loop() {
   }
 
   valA1 = measureTouch(touchPIN_1);
-  Serial.println(valA1);
+  //Serial.println(valA1);
   if (valA1 < touchTHRESHOLD_A1_max) {
-    myDFPlayer.play(2); // Toca o segundo audio
+    //myDFPlayer.play(2); // Toca o segundo audio
     Serial.print("Pino_A1: ");
     Serial.println(valA1);
     delay(delaySens); // Delay para evitar toquer sequenciais
   }
 
   valA3 = measureTouch(touchPIN_3);
-   Serial.println(valA3);
+  //Serial.println(valA3);
   if (valA3 < touchTHRESHOLD_A3_max) {
     //myDFPlayer.play(4); // Toca o quarto audio
     Serial.print("Pino_A3: ");
@@ -177,14 +180,14 @@ void loop() {
   }
 
   valA4 = measureTouch(touchPIN_4);
-  Serial.println(valA4);
+  //Serial.println(valA4);
   if (valA4 < touchTHRESHOLD_A4_max) {
     //myDFPlayer.play(5); // Toca o quinto audio
     Serial.print("Pino_A4: ");
     Serial.println(valA4);
     delay(delaySens); // Delay para evitar toquer sequenciais
   }
-  Serial.println("*");
+  Serial.print("*");
   delay(delayLoop);   
 }
 
