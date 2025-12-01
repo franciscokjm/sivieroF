@@ -1,7 +1,7 @@
 /* 
 Sub-Projeto Modelos Falantes
 
-Responsable Research: Prof. Dr. Fábio Siviero - fsiviero@usp.br 
+Responsable Research: Prof. Dr. Fabio Siviero - fsiviero@usp.br 
 Techinical Developer: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
 
 Hardware: ESP-32-C3 and DFPlayer Mini module
@@ -27,10 +27,10 @@ Grant Project for Pro-Reitoria de Pesquisa e Inovacao da Universidade de Sao Pau
 #define txPin 21 //Touch sensor 0 from ESP32 pin 0
 
 //Limit to trigger of the touch sensor
-#define limitSens0 6000
-#define limitSens1 6000
-#define limitSens3 6000
-#define limitSens4 6000
+#define limitSens0 9000
+#define limitSens1 9000
+#define limitSens3 9000
+#define limitSens4 9000
 boolean flagStart = true;
 
 //Variable to read value from pin sensors
@@ -57,7 +57,10 @@ long measureTouch(int pin) {
 }
 
 void setup(){
+    //delay(1000); //para compensar o tempo da comunicação serial
     Serial.begin(9600); //Setup to Serial com port
+    Serial.setTimeout(500);
+    delay(100); //para compensar o tempo da comunicação serial
     FPSerial.begin(9600,SWSERIAL_8N1,rxPin,txPin,false); //Setup to UART communication
     delay(10000);
 
