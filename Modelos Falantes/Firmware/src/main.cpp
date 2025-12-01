@@ -57,7 +57,7 @@ long measureTouch(int pin) {
 }
 
 void setup(){
-    //delay(1000); //para compensar o tempo da comunicação serial
+    delay(0); //para compensar o tempo da comunicação serial
     Serial.begin(9600); //Setup to Serial com port
     Serial.setTimeout(500);
     delay(100); //para compensar o tempo da comunicação serial
