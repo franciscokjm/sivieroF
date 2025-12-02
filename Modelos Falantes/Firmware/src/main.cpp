@@ -18,7 +18,7 @@ Grant Project for Pro-Reitoria de Pesquisa e Inovacao da Universidade de Sao Pau
 #include "SoftwareSerial.h"
 #include "DFRobotDFPlayerMini.h"
 
-//pins of ESP32C3 - Do not use Pin 2 in ESP32C3 Super mini
+//Pins of ESP32C3 _Do not use Pin 2 in ESP32C3 Super mini_
 #define sensPin0 0 //Touch sensor 0 from ESP32 pin 0
 #define sensPin1 1 //Touch sensor 1 from ESP32 pin 1
 #define sensPin3 3 //Touch sensor 3 from ESP32 pin 3
@@ -33,7 +33,7 @@ Grant Project for Pro-Reitoria de Pesquisa e Inovacao da Universidade de Sao Pau
 #define limitSens4 9000
 boolean flagStart = true;
 
-//Variable to read value from pin sensors
+//Variables to read value from pin sensors
 int valSensPin0, valSensPin1, valSensPin3, valSensPin4;
 
 //Initializing functions from libraries
@@ -57,20 +57,22 @@ long measureTouch(int pin) {
 }
 
 void setup(){
-    delay(0); //para compensar o tempo da comunicação serial
+    delay(0); //
     Serial.begin(9600); //Setup to Serial com port
     Serial.setTimeout(500);
-    delay(100); //para compensar o tempo da comunicação serial
     FPSerial.begin(9600,SWSERIAL_8N1,rxPin,txPin,false); //Setup to UART communication
     delay(10000);
 
-    if (!myDFPlayer.begin(FPSerial, true,true)) {  //Initializing the communications between mp3 player and ESP32
+    //if (!myDFPlayer.begin(FPSerial, true,true)) {  //Initializing the communications between mp3 player and ESP32
+    if (!myDFPlayer.begin(FPSerial, false)) {  //Initializing the communications between mp3 player and ESP32
+        delay(1000); //Waiting the initialize
         Serial.println(F("Unable to begin:"));
         Serial.println(F("1.Please recheck the connection!"));
         Serial.println(F("2.Please insert the SD card or USB drive!"));
         while(true){
             delay(1000);
-            Serial.println("Serial fail");          
+            Serial.println("Serial fail");    
+            FPSerial.flush();
         }
     }
     else{
@@ -122,5 +124,5 @@ void loop(){
             Serial.println(valSensPin4);
         }
     }
-    delay(500);
+    delay(500); //500
 }    
