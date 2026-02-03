@@ -69,6 +69,7 @@ void setup(){
         Serial.println(F("Unable to begin:"));
         Serial.println(F("1.Please recheck the connection!"));
         Serial.println(F("2.Please insert the SD card or USB drive!"));
+        myDFPlayer.volume(17);
         while(true){
             delay(1000);
             Serial.println("Serial fail");    
