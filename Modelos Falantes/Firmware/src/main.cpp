@@ -27,10 +27,10 @@ Grant Project for Pro-Reitoria de Pesquisa e Inovacao da Universidade de Sao Pau
 #define txPin 21 //Touch sensor 0 from ESP32 pin 0
 
 //Limit to trigger of the touch sensor
-#define limitSens0 9000
-#define limitSens1 9000
-#define limitSens3 9000
-#define limitSens4 9000
+#define limitSens0 3000
+#define limitSens1 3000
+#define limitSens3 3000
+#define limitSens4 3000
 boolean flagStart = true;
 
 //Variables to read value from pin sensors
@@ -42,7 +42,7 @@ DFRobotDFPlayerMini myDFPlayer;
 
 //Function to measure "capacitive" variations from pin sensors
 long measureTouch(int pin) {
-  // Discharge cicle
+  //Discharge cicle
   pinMode(pin, OUTPUT);
   digitalWrite(pin, LOW);
   delay(0); //1
@@ -65,7 +65,7 @@ void setup(){
 
     //if (!myDFPlayer.begin(FPSerial, true,true)) {  //Initializing the communications between mp3 player and ESP32
     if (!myDFPlayer.begin(FPSerial, false)) {  //Initializing the communications between mp3 player and ESP32
-        delay(1000); //Waiting the initialize
+        delay(20000); //Waiting the initialize
         Serial.println(F("Unable to begin:"));
         Serial.println(F("1.Please recheck the connection!"));
         Serial.println(F("2.Please insert the SD card or USB drive!"));
@@ -84,7 +84,7 @@ void setup(){
 //Main program
 void loop(){
     static unsigned long timer = millis();
-    if (millis() - timer > 1000) {
+    if (millis() - timer > 2000) { //1000
         timer = millis();
         int value;
         value = myDFPlayer.readFileCounts(); //read all file counts in SD card
@@ -93,30 +93,35 @@ void loop(){
         }
         else{ //Successfully get the result and read "capacitive" sensors.
             if(flagStart==true){
-                myDFPlayer.play(9); //Play track 9 from SD card
+                //myDFPlayer.play(9); //Play track 9 from SD card
                 flagStart = false;
             }
             Serial.println(value);
-            valSensPin0 = measureTouch(sensPin0);
-            valSensPin1 = measureTouch(sensPin1);
-            valSensPin3 = measureTouch(sensPin3);
-            valSensPin4 = measureTouch(sensPin4);
+            valSensPin0 = analogRead(sensPin0);
+            valSensPin1 = analogRead(sensPin1);
+            valSensPin3 = analogRead(sensPin3);
+            valSensPin4 = analogRead(sensPin4);
+
+            //valSensPin0 = measureTouch(sensPin0);
+            //valSensPin1 = measureTouch(sensPin1);
+            //valSensPin3 = measureTouch(sensPin3);
+            //valSensPin4 = measureTouch(sensPin4);
 
             //Tests of value pin sensors and trigger values
-            if (valSensPin0 < limitSens0){
-                Serial.println("valSensPin0");
-                myDFPlayer.play(1); //Play track 1 from SD card
+            if (valSensPin0 > limitSens0){
+                Serial.println("valSensPin0, play 1");
+                myDFPlayer.play(0001); //Play track 1 from SD card
             }
-            if (valSensPin1 < limitSens1){
-                Serial.println("valSensPin1");
+            if (valSensPin1 > limitSens1){
+                Serial.println("valSensPin1, play 2");
                 myDFPlayer.play(2); //Play track 2 from SD card
             }
-            if (valSensPin3 < limitSens3){
-                Serial.println("valSensPin3");
+            if (valSensPin3 > limitSens3){
+                Serial.println("valSensPin3, play 3");
                 myDFPlayer.play(3); //Play track 3 from SD card
             }
-            if (valSensPin4 < limitSens4){
-                Serial.println("valSensPin4");
+            if (valSensPin4 > limitSens4){
+                Serial.println("valSensPin4, play 4");
                 myDFPlayer.play(4); //Play track 4 from SD card
             }
             Serial.println(valSensPin0);
