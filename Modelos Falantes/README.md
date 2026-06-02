@@ -32,3 +32,5 @@ desenvolvendo tecnologia assistiva e oferecendo aprendizagem inclusiva e escalá
  3. Departamento de Biomateriais e Biologia Oral, USP, paulocapel@usp.br | https://site.fo.usp.br/pessoas/docentes/paulo-eduardo-capel-cardoso/
 
 🤝 _Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universade de São Paulo | www.prpi.usp.br_
+
+Teste de atualização
