@@ -8,8 +8,8 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "/home/admin436/Documents/02-MIC/02-Instrumentacao/Fabio/sivieroF/ModelosFalantes_V04/include",
-                "/home/admin436/Documents/02-MIC/02-Instrumentacao/Fabio/sivieroF/ModelosFalantes_V04/src",
+                "/home/admin436/Documents/02-MIC/02-Instrumentacao/Fabio/sivieroF/Modelos Falantes_V04/ModelosFalantes_V04/include",
+                "/home/admin436/Documents/02-MIC/02-Instrumentacao/Fabio/sivieroF/Modelos Falantes_V04/ModelosFalantes_V04/src",
                 "/home/admin436/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/include/newlib/platform_include",
                 "/home/admin436/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/include/freertos/include",
                 "/home/admin436/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/include/freertos/include/esp_additions/freertos",
@@ -241,8 +241,8 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "/home/admin436/Documents/02-MIC/02-Instrumentacao/Fabio/sivieroF/ModelosFalantes_V04/include",
-                    "/home/admin436/Documents/02-MIC/02-Instrumentacao/Fabio/sivieroF/ModelosFalantes_V04/src",
+                    "/home/admin436/Documents/02-MIC/02-Instrumentacao/Fabio/sivieroF/Modelos Falantes_V04/ModelosFalantes_V04/include",
+                    "/home/admin436/Documents/02-MIC/02-Instrumentacao/Fabio/sivieroF/Modelos Falantes_V04/ModelosFalantes_V04/src",
                     "/home/admin436/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/include/newlib/platform_include",
                     "/home/admin436/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/include/freertos/include",
                     "/home/admin436/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/include/freertos/include/esp_additions/freertos",
