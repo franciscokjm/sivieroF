@@ -1,5 +1,5 @@
 /* 
-Sub-Projeto Sensor de Nível                                      19/06/2026
+Sub-Projeto Sensor de Nível                                      23/06/2026
 
 Pesquisador Responsável: Prof. Dr. Cleyton Fernandes Ferrarini - cleyton@ufscar.br 
 Desenvolvimento Técnico: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
@@ -26,33 +26,29 @@ da Secretaria de Estado dos Direitos da Pessoa com Deficiência.
 #include "coin.h"
 
 //configuracao de pinos da microcontroladora
-#define tg_motor 0 //motor vibratorio
-#define sig_ttp223 1 //Sensor de toque
-//#define aux1_J8 2 //porta auxiliar 1 em J8
-//#define aux2_J8 3 //porta auxiliar 2 em J8
-//#define aux3_J8 4 //porta auxiliar 3 em J8
-#define sda_DS18S20 8 //sensor de temperatura
-//#define aux2_J5 9 //porta auxiliar 2 em J5
+#define tg_motor 0     //motor vibratorio
+#define sig_ttp223 1   //Sensor de toque
+//#define aux1_J8 2    //porta auxiliar 1 em J8
+//#define aux2_J8 3    //porta auxiliar 2 em J8
+//#define aux3_J8 4    //porta auxiliar 3 em J8
+#define sda_DS18S20 8  //sensor de temperatura
+//#define aux2_J5 9    //porta auxiliar 2 em J5
 #define pwm_PAM8403 10 //PWM-DAC
-//#define aux3_J5 20 //porta auxiliar 3 em J5
-//#define aux4_J5 21 //porta auxiliar 4 em J5
+//#define aux3_J5 20   //porta auxiliar 3 em J5
+//#define aux4_J5 21   //porta auxiliar 4 em J5
 
-
-// Configuração do pino PWM DAC
-//const int PWM_PIN = 10;      // GPIO 10
+//Configuracao do PWM DAC
 const int PWM_CHAN = 0;      // Canal do LEDC (Obrigatório no Core 2.x)
-const int PWM_FREQ = 150000; // 150kHz
+const int PWM_FREQ = 150000; // Frequencia de oscilacao do PWM (150kHz)
 const int PWM_RES = 8;       // Resolução de 8 bits (0-255)
 
-// Configurações do Áudio em Memória
+// Configurações do audio em memoria
 const int SAMPLE_RATE = 8000; // Frequência de amostragem do áudio conforme audio original
 volatile uint32_t sample_ptr = 0;
-//const uint32_t audio_length = sizeof(CoinWav);
 
-volatile bool playing = false;
-
-//variaveis de sistema
-#define RESISTOR_VAL 1000000 // 1M Ohm; resistor para stepup
+//variaveis gerais
+volatile bool playing = false; //
+int RESISTOR_VAL = 1000000; // 1M Ohm; resistor para stepup
 int SigLast = 0; 
 bool levelAlarm;
 float temperatureC;
@@ -60,8 +56,6 @@ unsigned long tempoInicio =0;
 unsigned long tempoAtual = 0;
 unsigned long tempoDecorrido = 0;
 int intervalo = 2000;
-
-
 
 //inicializacao de bibliotecas
 OneWire oneWire(sda_DS18S20);
