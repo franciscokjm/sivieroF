@@ -13,7 +13,7 @@ deficiência visual ainda carecem de recursos pedagógicos inclusivos. Este estu
 desenvolveu modelos anatômicos falantes impressos em 3D, em código aberto, para
 tornar o conteúdo acessível a esse público. Imagens tomográficas geraram modelos de
 crânio e esfenoide em PLA/ABS, munidos de sensores capacitivos ligados a
-microcontroladoras ESP32 e DFPlayer-mini que acionam audiodescrições ao toque. Os
+microcontroladoras ESP32 e um leitor de cartão SD. Os
 protótipos exibiram operação autônoma, baixo custo e maior compreensão tátil-auditiva
 por usuário de baixa visão. A solução elaborada integra tecnologias abertas à educação,
 desenvolvendo tecnologia assistiva e oferecendo aprendizagem inclusiva e escalável. 
