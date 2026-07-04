@@ -3,8 +3,8 @@
 
 ##### Neste repositório você encontrará:
 
-* [Modelos Falantes versão 03]
-* [Modelos Falantes versão 04]
+* [Modelos Falantes versão 04](https://github.com/franciscokjm/sivieroF/tree/main/Modelos%20Falantes/Modelos%20Falantes_V04)
+* [Modelos Falantes versão 03](https://github.com/franciscokjm/sivieroF/tree/main/Modelos%20Falantes/Modelos%20Falantes_V03)
 * Maiores informações podem ser obtidas no site do grupo de pesquisa: www.sites.usp.br/latecbio
 
 ##### Sobre os Modelos Falantes:
