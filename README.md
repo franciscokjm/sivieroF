@@ -1,9 +1,9 @@
-# Laboratório de Tecnologias no Ensino de Ciências Biomédicas 
+# Laboratório de Tecnologias no Ensino de Ciências Biomédicas - LaTECBio
 
 #### Neste repositório você encontrará:
 
 * [Projeto Modelos Falantes](https://github.com/franciscokjm/sivieroF/tree/main/Modelos%20Falantes)
-* [Projeto Sensor de Nivel]
+* [Projeto Sensor de Nivel] (https://github.com/franciscokjm/sivieroF/tree/main/Sensor%20de%20Nivel)
 
 #### Palavras-chave: 
 
@@ -15,3 +15,4 @@
 
 
 🤝 _Desenvolvido com apoio do Setor de Manutenção e Instrumentação Científica - MIC | www.sites.usp.br/mic_
+&#160;&#160;&#160;&#160;&#160;Responsável Técnico: Dr. Kelliton J M Francisco, kelliton@usp.br
