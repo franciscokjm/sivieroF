@@ -1,8 +1,9 @@
 /* 
-Sub-Projeto Modelos Falantes
+Project Name: Modelos Falantes
 
 Responsable Research: Prof. Dr. Fabio Siviero - fsiviero@usp.br 
 Techinical Developer: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
+Affiliation: ICB - University of São Paulo (USP)
 
 Hardware: ESP-32-C3 and DFPlayer Mini module
 IDE: Visual Studio Code version 1.96.4 and PlatformIO Core 6.1.16
@@ -10,6 +11,9 @@ IDE: Visual Studio Code version 1.96.4 and PlatformIO Core 6.1.16
 This sub-project is inscluded in the project "Desenvolvimento de Recursos de 
 Tecnologia Assistiva para Atividades de Vida Diaria e Ensino de Pessoas com Deficiencia Visual".
 Coordinator: Prof. Dr. Paulo Eduardo Capel Cardoso - paulocapel@usp.br
+
+This file is open-source software licensed under the MIT License.
+See the LICENSE file at the project root for more details.
 
 Grant Project for Pro-Reitoria de Pesquisa e Inovacao da Universidade de Sao Paulo.
 */
