@@ -34,7 +34,7 @@ desenvolvendo tecnologia assistiva e oferecendo aprendizagem inclusiva e escalá
 ##### Licença e Atribuição
 
 Este projeto é um ecossistema Open-Source dividido em três partes:
-- **Firmware (ESP32):** Licenciado sob a [Licença MIT](LINK_DA_LICENCA).
+- **Firmware (ESP32):** Licenciado sob a [Licença GNU](LINK_DA_LICENCA).
 - **Hardware (PCB/Diptrace):** Licenciado sob a [CERN-OHL-S](LINK).
 - **Modelos 3D (STL):** Licenciados sob [CC BY-SA 4.0](LINK).
 
