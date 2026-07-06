@@ -34,8 +34,8 @@ desenvolvendo tecnologia assistiva e oferecendo aprendizagem inclusiva e escalá
 ##### Licença e Atribuição
 
 Este projeto é um ecossistema Open-Source dividido em três partes:
-- **Firmware (ESP32):** Licenciado sob a [Licença GNU](LINK_DA_LICENCA).
-- **Hardware (PCB/Diptrace):** Licenciado sob a [CERN-OHL-S](LINK).
-- **Modelos 3D (STL):** Licenciados sob [CC BY-SA 4.0](LINK).
+- **Firmware (ESP32):** Licenciado sob a [Licença GNU](https://github.com/franciscokjm/sivieroF/blob/main/Modelos%20Falantes/Modelos%20Falantes_V04/LICENCE.txt).
+- **Hardware (PCB/Diptrace):** Licenciado sob a [CERN-OHL-S](https://ohwr.org/cern_ohl_s_v2.pdf).
+- **Modelos 3D (STL):** Licenciados sob [CC BY-SA 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 Ao replicar, citar ou comercializar este dispositivo, o crédito aos desenvolvedores originais (**Prof. Dr. Fabio Siviero, Dr. Kelliton J. M. Francisco e Prof. Dr. Paulo Eduardo Capel Cardoso**) deve ser mantido de forma visível na documentação e no hardware.
