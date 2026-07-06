@@ -1,9 +1,10 @@
 /* 
-Sub-Projeto Modelos Falantes                                      19/06/2026
+Nome do Pojeto: Modelos Falantes                                      19/06/2026
 
 Pesquisador Responsável: Prof. Fabio Siviero - siviero@usp.br
 Desenvolvimento Técnico: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
 Pesquisadores: Prof. Dr. Paulo Eduardo Capel Cardoso - paulocapel@usp.br
+Instituição de Origem: ICB - Universidade de São Paulo (USP)
 
 Ambiente de desenvolvimento: Visual Studio Code version 1.96.4 and PlatformIO Core 6.1.16
 Hardware: Microcontroladora ESP-32-C3 mini
@@ -11,6 +12,9 @@ Hardware: Microcontroladora ESP-32-C3 mini
           Módulo Amplificador PAM8403 (HW-104)
           Modulo leitor de cartão microSD (HW-125)
           Módulo Sensor de toque TTP223
+
+Este arquivo é um software de código aberto, licenciado sob a Licença MIT.
+Veja o arquivo LICENSE na raiz do projeto para mais detalhes.
 
 Este este subprojeto faz parte dos trabalhos desenvolvidos no âmbito do 
 Centro de Pesquisa e Orientação sobre Deficiência Visual (CpodV) financiado pela 
