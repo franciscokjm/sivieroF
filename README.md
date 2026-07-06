@@ -16,4 +16,3 @@
 
 🤝 _Desenvolvido com apoio do Setor de Manutenção e Instrumentação Científica - MIC | www.sites.usp.br/mic_
 
-&#160;&#160;&#160;&#160;&#160;Responsável Técnico: Dr. Kelliton J M Francisco, kelliton@usp.br
