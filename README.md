@@ -20,6 +20,4 @@ Repositório do _Setor de Manutenção e Instrumentação Científica - MIC_ em 
 
 
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/83/The_GNU_logo.png" width="58" height="50" alt="GNU Lincese">
-<img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="88" height="31" alt="CC by SA">
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Open-source-hardware-logo.svg" width="100" height="50" alt="CERN-OHL-S">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/83/The_GNU_logo.png" width="58" height="50" alt="GNU Lincese"> <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="88" height="31" alt="CC by SA"> <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Open-source-hardware-logo.svg" width="80" height="40" alt="CERN-OHL-S">
