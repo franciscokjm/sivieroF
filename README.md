@@ -18,6 +18,6 @@ Repositório do _Setor de Manutenção e Instrumentação Científica - MIC_ em 
 
 🤝 _Desenvolvido com apoio do Setor de Manutenção e Instrumentação Científica - MIC | www.sites.usp.br/mic_
 
-![GNU Lincese](https://upload.wikimedia.org/wikipedia/commons/8/83/The_GNU_logo.png)
+![GNU Lincese|100x100](https://upload.wikimedia.org/wikipedia/commons/8/83/The_GNU_logo.png)
 ![CC by SA](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png)
 ![CERN-OHL-S](https://upload.wikimedia.org/wikipedia/commons/f/fd/Open-source-hardware-logo.svg)
