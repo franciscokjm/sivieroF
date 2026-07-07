@@ -1,4 +1,4 @@
-# Respositório sivieroF
+# SivieroF
 
 Repositório do _Setor de Manutenção e Instrumentação Científica - MIC_ em parceria com o _Laboratório de Tecnologias no Ensino de Ciências Biomédicas - LaTECBio_
 
