@@ -12,7 +12,7 @@ This sub-project is inscluded in the project "Desenvolvimento de Recursos de
 Tecnologia Assistiva para Atividades de Vida Diaria e Ensino de Pessoas com Deficiencia Visual".
 Coordinator: Prof. Dr. Paulo Eduardo Capel Cardoso - paulocapel@usp.br
 
-This file is open-source software licensed under the MIT License.
+This file is open-source software licensed under the GNU License.
 See the LICENSE file at the project root for more details.
 
 Grant Project for Pro-Reitoria de Pesquisa e Inovacao da Universidade de Sao Paulo.
