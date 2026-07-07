@@ -13,7 +13,7 @@ Hardware: Microcontroladora ESP-32-C3 mini
           Modulo leitor de cartão microSD (HW-125)
           Módulo Sensor de toque TTP223
 
-Este arquivo é um software de código aberto, licenciado sob a Licença MIT.
+Este arquivo é um software de código aberto, licenciado sob a Licença GNU.
 Veja o arquivo LICENSE na raiz do projeto para mais detalhes.
 
 Este este subprojeto faz parte dos trabalhos desenvolvidos no âmbito do 
