@@ -1,4 +1,4 @@
-# Sub-Projeto Modelos Falantes
+# Projeto Modelos Falantes
 ### **_Projeto de Desenvolvimento de Recursos de Tecnologia Assistiva para Atividades de Vida Diaria e Ensino de Pessoas com Deficiencia Visual_**
 
 ##### Neste repositório você encontrará:
