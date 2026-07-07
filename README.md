@@ -1,5 +1,6 @@
 # Setor de Manutenção e Instrumentação Cientítica - MIC
-# _aboratório de Tecnologias no Ensino de Ciências Biomédicas - LaTECBio_
+
+Repositório de porjetos desnvolvidos conjuntamente com o _Laboratório de Tecnologias no Ensino de Ciências Biomédicas - LaTECBio_
 
 #### Neste repositório você encontrará:
 
