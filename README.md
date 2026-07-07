@@ -24,7 +24,7 @@ Repositório do _Setor de Manutenção e Instrumentação Científica - MIC_ em 
 
 
 
-## ⚖️ Licenciamento e Propriedade Intelectual
+### Licenciamento e Propriedade Intelectual
 
 Este projeto adota uma política multimídia de código aberto, garantindo que o hardware, o software e a documentação associada permaneçam livres, públicos e protegidos contra fechamento de código por terceiros (*copyleft*).
 
