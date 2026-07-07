@@ -1,6 +1,6 @@
-# Setor de Manutenção e Instrumentação Cientítica - MIC
+# Respositório sivieroF
 
-Repositório de porjetos desnvolvidos conjuntamente com o _Laboratório de Tecnologias no Ensino de Ciências Biomédicas - LaTECBio_
+Repositório do _Setor de Manutenção e Instrumentação Científica - MIC_ emn parceria com o _Laboratório de Tecnologias no Ensino de Ciências Biomédicas - LaTECBio_
 
 #### Neste repositório você encontrará:
 
