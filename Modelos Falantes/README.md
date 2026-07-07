@@ -40,3 +40,5 @@ Este projeto é um ecossistema Open-Source dividido em três partes:
 - **Modelos 3D (STL):** Licenciados sob [CC BY-SA 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 Ao replicar, citar ou comercializar este dispositivo, o crédito aos desenvolvedores originais (**Prof. Dr. Fabio Siviero, Dr. Kelliton J. M. Francisco e Prof. Dr. Paulo Eduardo Capel Cardoso**) deve ser mantido de forma visível na documentação e no hardware.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/83/The_GNU_logo.png" width="58" height="50" alt="GNU Lincese"> &#160;&#160; <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="88" height="31" alt="CC by SA"> &#160;&#160; <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Open-source-hardware-logo.svg" width="80" height="40" alt="CERN-OHL-S">
