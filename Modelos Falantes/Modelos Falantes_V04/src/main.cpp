@@ -6,7 +6,7 @@ Desenvolvimento Técnico: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br
 Pesquisadores: Prof. Dr. Paulo Eduardo Capel Cardoso - paulocapel@usp.br
 Instituição de Origem: ICB - Universidade de São Paulo (USP)
 
-Ambiente de desenvolvimento: Visual Studio Code version 1.96.4 and PlatformIO Core 6.1.16
+Ambiente de desenvolvimento: Visual Studio Code version 1.96.4 e PlatformIO Core 6.1.16
 Hardware: Microcontroladora ESP-32-C3 mini
           Módulo BMS TP4056CP (HW-373)
           Módulo Amplificador PAM8403 (HW-104)
