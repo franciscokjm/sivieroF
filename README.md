@@ -18,7 +18,7 @@ Repositório do _Setor de Manutenção e Instrumentação Científica - MIC_ em 
 
 🤝 _Desenvolvido com apoio do Setor de Manutenção e Instrumentação Científica - MIC | www.sites.usp.br/mic_
 
-#### ⚖️ Licenciamento e Propriedade Intelectual
+#### ⚖️ Licenciamento e Propriedade Intelectual:
 
 Este projeto adota uma política multimídia de código aberto, garantindo que o hardware, o software e a documentação associada permaneçam livres, públicos e protegidos contra fechamento de código por terceiros (*copyleft*).
 
@@ -30,7 +30,7 @@ Este projeto adota uma política multimídia de código aberto, garantindo que o
 
 ---
 
-#### ⚙️ Certificação OSHWA (Open Source Hardware)
+#### ⚙️ Certificação OSHWA (Open Source Hardware):
 
 Este repositório atende integralmente à Definição de Hardware Aberto da **OSHWA** (*Open Source Hardware Association*). 
 
