@@ -30,12 +30,3 @@ Este projeto adota uma política multimídia de código aberto, garantindo que o
 
 ---
 
-#### ⚙️ Certificação OSHWA (Open Source Hardware):
-
-Este repositório atende integralmente à Definição de Hardware Aberto da **OSHWA** (*Open Source Hardware Association*). 
-
-- **Hardware Aberto:** Conforme exigido pela licença CERN-OHL-S, os arquivos de fabricação estão abertos e disponíveis na pasta `/hardware`.
-- **Uso Comercial:** É permitido, desde que qualquer produto derivado ou modificado também libere seus esquemas, códigos e documentação sob as mesmas licenças recíprocas descritas acima (*ShareAlike*).
-
-<img src="https://github.com/OSHW/logo/blob/master/oshw.png" width="80" height="80" alt="Open Source Hardware Logo">
-
