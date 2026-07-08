@@ -24,7 +24,7 @@ Repositório do _Setor de Manutenção e Instrumentação Científica - MIC_ em 
 
 
 
-### Licenciamento e Propriedade Intelectual
+#### Licenciamento e Propriedade Intelectual
 
 Este projeto adota uma política multimídia de código aberto, garantindo que o hardware, o software e a documentação associada permaneçam livres, públicos e protegidos contra fechamento de código por terceiros (*copyleft*).
 
@@ -36,11 +36,11 @@ Este projeto adota uma política multimídia de código aberto, garantindo que o
 
 ---
 
-### ⚙️ Certificação OSHWA (Open Source Hardware)
+#### ⚙️ Certificação OSHWA (Open Source Hardware)
 
 Este repositório atende integralmente à Definição de Hardware Aberto da **OSHWA** (*Open Source Hardware Association*). 
 
 - **Hardware Aberto:** Conforme exigido pela licença CERN-OHL-S, os arquivos de fabricação estão abertos e disponíveis na pasta `/hardware`.
 - **Uso Comercial:** É permitido, desde que qualquer produto derivado ou modificado também libere seus esquemas, códigos e documentação sob as mesmas licenças recíprocas descritas acima (*ShareAlike*).
 
-![Open Source Hardware Logo](https://www.oshwa.org/wp-content/uploads/2014/04/OSHW_mark_80x100.png)
+![Open Source Hardware Logo](https://github.com/OSHW/logo/blob/master/oshw.png)
