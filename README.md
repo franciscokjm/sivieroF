@@ -18,13 +18,7 @@ Repositório do _Setor de Manutenção e Instrumentação Científica - MIC_ em 
 
 🤝 _Desenvolvido com apoio do Setor de Manutenção e Instrumentação Científica - MIC | www.sites.usp.br/mic_
 
-
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/83/The_GNU_logo.png" width="58" height="50" alt="GNU Lincese"> &#160;&#160; <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/CC_BY-SA_icon.svg/330px-CC_BY-SA_icon.svg.png" width="88" height="31" alt="CC by SA"> &#160;&#160; <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Open-source-hardware-logo.svg" width="80" height="40" alt="CERN-OHL-S">
-
-
-
-#### Licenciamento e Propriedade Intelectual
+#### ⚖️ Licenciamento e Propriedade Intelectual
 
 Este projeto adota uma política multimídia de código aberto, garantindo que o hardware, o software e a documentação associada permaneçam livres, públicos e protegidos contra fechamento de código por terceiros (*copyleft*).
 
