@@ -1,5 +1,5 @@
 /* 
-Nome do Pojeto: Modelos Falantes                                      19/06/2026
+Nome do Projeto: Modelos Falantes                                      19/06/2026
 
 Pesquisador Responsável: Prof. Fabio Siviero - siviero@usp.br
 Desenvolvimento Técnico: Dr. Kelliton Jose Mendonca Francisco - kelliton@usp.br

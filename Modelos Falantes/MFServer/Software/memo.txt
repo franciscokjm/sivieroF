@@ -1,0 +1,5 @@
+* incluir monitoramento de downloads de cada arquivo do servidor por usuário.
+* obter data e hora do servidor de cada download.
+* armazenar informações sobre qualidade de sinal de transmissão de dados.
+* permitir que o servidor acesse a internet para monitoramento remoto mas também crie uma rede intranet para convidados.
+* 
