@@ -19,7 +19,7 @@
     da Secretaria de Estado dos Direitos da Pessoa com Deficiência.
 """
 
-# >>>>>>>>>>>>> CODIGO EM DESENVOLVIMENTO <<<<<<<<<<<
+""" >>>>>>>>>>>>> CODIGO EM DESENVOLVIMENTO <<<<<<<<<<< """
 
 import influxdb_client
 from influxdb_client.client.write_api import SYNCHRONOUS
