@@ -29,4 +29,4 @@ Este projeto adota uma política multimídia de código aberto, garantindo que o
 
 ---
 
-🤝 _Desenvolvido com apoio do Setor de Manutenção e Instrumentação Científica - MIC | www.sites.usp.br/mic_
+![logo](https://sites.usp.br/mic/wp-content/uploads/sites/1693/2025/06/cropped-cropped-viewavatar_512-1-e1752544961794-1-e1753152598537.png) _Desenvolvido com apoio do Setor de Manutenção e Instrumentação Científica - MIC | www.sites.usp.br/mic_
