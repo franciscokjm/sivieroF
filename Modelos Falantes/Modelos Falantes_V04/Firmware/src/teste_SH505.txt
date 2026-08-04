@@ -1,0 +1,20 @@
+/* 
+Teste de proximidade do sensor PIR SR-505
+*/
+
+
+#include <Arduino.h>
+
+const int sens = 0;
+int val;
+
+void setup(){
+  Serial.begin(115200);
+  pinMode(sens, INPUT);
+}
+
+void loop(){
+  val = analogRead(sens);
+  Serial.println(val);
+  delay(200);
+}
