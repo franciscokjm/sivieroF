@@ -22,24 +22,23 @@ Fundação de Apoio a Pesquisa do Estado de São Paulo e com participação
 da Secretaria de Estado dos Direitos da Pessoa com Deficiência.
 */
 
-
 #include <Arduino.h>
 #include <SPI.h>
 #include <SD.h>
 
-
-//#define touchSensor_1 0
-//#define touchSensor_2 1
-//#define touchSensor_3 3
+#define touchSensPin_1 0
+#define touchSensPin_2 1
+#define touchSensPin_3 3
+#define touchSensPin_4 8
+#define touchSensPin_5 9
+#define touchSensPin_6 20
+#define touchSensPin_7 21
 #define sckPin 4 
 #define misoPin 5
 #define mosiPin 6
 #define ssPin 7
-//#define touchSensor_4 8
-//#define touchSensor_5 9
 #define pwmDAC_amplif 10
-//#define touchSensor_6 20
-//#define touchSensor_7 21
+
 
 const int PWM_CHAN = 0;      // Canal do LEDC (Obrigatório no Core 2.x)
 const int PWM_FREQ = 150000; // 150kHz
@@ -58,6 +57,19 @@ volatile bool bufferA_ready = false; // Indica se o Buffer A está cheio e pront
 volatile bool bufferB_ready = false; // Indica se o Buffer B está cheio e pronto para tocar
 volatile bool playing = false;       // Status da reprodução
 volatile float volume = 1;
+
+int SensInput1, SensInput2, SensInput3, SensInput4, SensInput5, SensInput6, SensInput7;
+int timeTouch, valor;
+long int time_1, time_0;
+
+char meuArquivo_0[] = "/0.wav"; //plim
+char meuArquivo_1[] = "/1.wav";
+char meuArquivo_2[] = "/2.wav"; //Parietal
+char meuArquivo_3[] = "/3.wav"; //Occiptal
+char meuArquivo_4[] = "/4.wav"; 
+char meuArquivo_5[] = "/5.wav";
+char meuArquivo_6[] = "/6.wav"; //Lacrimal
+char meuArquivo_7[] = "/7.wav"; //Frontal
 
 File audioFile;
 hw_timer_t *timer = NULL;
@@ -105,7 +117,6 @@ void IRAM_ATTR onTimer() {
     ledcWrite(PWM_CHAN, final_sample);
   }
 }
-
 
 // Funções do "Produtor": Carregam o SD para a RAM
 void carregarBufferA() {
@@ -163,10 +174,37 @@ void tocarAudioSD(const char* nomeArquivo) {
   playing = true;
   
   timerAlarmEnable(timer);
-  Serial.print("Tocando: "); Serial.println(nomeArquivo);
+  Serial.print("Tocando: "); 
+  Serial.println(nomeArquivo);
+}
+
+void disparoTest(int sensor, int touchPin, char *Arquivo, long int t0) {
+  if (sensor == HIGH){
+    do{
+      delay(1);
+      time_1 = millis();
+      valor = digitalRead(touchPin);
+    }while (valor == 1);
+    timeTouch = time_1 - t0;
+    Serial.println(t0);
+    Serial.println(timeTouch);
+    if (timeTouch > 100) {
+      Serial.println(Arquivo);
+      tocarAudioSD(Arquivo);
+    }
+  }
 }
 
 void setup() {
+
+  pinMode(touchSensPin_1, INPUT);
+  pinMode(touchSensPin_2, INPUT);
+  pinMode(touchSensPin_3, INPUT);
+  pinMode(touchSensPin_4, INPUT);
+  pinMode(touchSensPin_5, INPUT);
+  pinMode(touchSensPin_6, INPUT);
+  pinMode(touchSensPin_7, INPUT);
+
   Serial.begin(115200); 
   delay(5000);
   SPI.begin(SCK,MISO,MOSI,SS);
@@ -188,6 +226,7 @@ void setup() {
 }
 
 void loop() {
+  time_0 = millis();
 // CRUCIAL: O loop agora gerencia o abastecimento dos buffers em tempo real
   if (playing) {
     if (!bufferA_ready) {
@@ -203,13 +242,40 @@ void loop() {
     Serial.println("Esperando cmd 'S' ");
     char c = Serial.read();
     if (c == 's' || c == 'S') {
-      //tocarAudioSD("/1.wav"); // Lembrar da barra "/" indicando a raiz do SD
-      tocarAudioSD("/2.wav"); // Lembrar da barra "/" indicando a raiz do SD
+        tocarAudioSD(meuArquivo_0); // Lembrar da barra "/" indicando a raiz do SD
       Serial.println("tocou plin...");
     }
   }
-  
-  // Seus sensores analógicos entram aqui, mas evite usar "delay()" longos no loop 
-  // para não travar o abastecimento do buffer de áudio!
+
+  //SensInput1 = digitalRead(touchSensPin_1); 
+  SensInput2 = digitalRead(touchSensPin_2); 
+  SensInput3 = digitalRead(touchSensPin_3); 
+  //SensInput4 = digitalRead(touchSensPin_4); 
+  //SensInput5 = digitalRead(touchSensPin_5); 
+  SensInput6 = digitalRead(touchSensPin_6); 
+  SensInput7 = digitalRead(touchSensPin_7); 
+/*
+  Serial.print("SensInput1: "); 
+  Serial.println(SensInput1);
+  Serial.print("SensInput2: ");
+  Serial.println(SensInput2);
+  Serial.print("SensInput3: ");
+  Serial.println(SensInput3);
+  Serial.print("SensInput4: ");
+  Serial.println(SensInput4);
+  Serial.print("SensInput5: ");
+  Serial.println(SensInput5);
+  Serial.print("SensInput6: ");
+  Serial.println(SensInput6);
+  Serial.print("SensInput7: ");
+  Serial.println(SensInput7);
+*/
+  //disparoTest(SensInput1, touchSensPin_1, meuArquivo_1, time_0);
+  disparoTest(SensInput2, touchSensPin_2, meuArquivo_2, time_0);
+  disparoTest(SensInput3, touchSensPin_3, meuArquivo_3, time_0);
+  //disparoTest(SensInput4, touchSensPin_4, meuArquivo_4, time_0);
+  //disparoTest(SensInput5, touchSensPin_5, meuArquivo_5, time_0);  
+  disparoTest(SensInput6, touchSensPin_6, meuArquivo_6, time_0);
+  disparoTest(SensInput7, touchSensPin_7, meuArquivo_7, time_0); 
 }
 
