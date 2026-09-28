@@ -13,11 +13,12 @@
 
 ##### Equipe de desenvolvimento:
 
- &#160;&#160;&#160;&#160;&#160;_Prof. Dr. Fábio Siviero <sup>1</sup>, Dr. Kelliton José Mendonça Francisco <sup>2</sup>, Sabrina Miyahira <sup>3</sup>_
+ &#160;&#160;&#160;&#160;&#160;, Dr. Kelliton José Mendonça Francisco <sup>1</sup>, Sabrina Miyahira <sup>2</sup>, _Prof. Dr. Fábio Siviero <sup>3</sup>_
 
- 1. Departamento de Biologia Celular e do Desenvolvimento, USP, fsiviero@usp.br | www.sites.usp.br/latecbio
- 2. Departamento de Biologia Celular e do Desenvolvimento, USP, kelliton@usp.br | www.sites.usp.br/mic
- 3. Departamento de Biologia Celular e do Desenvolvimento, USP, sabrinamiyahira@usp.br |  www.sites.usp.br/latecbio
+ 
+ 1. Departamento de Biologia Celular e do Desenvolvimento, USP, kelliton@usp.br | www.sites.usp.br/mic
+ 2. Departamento de Biologia Celular e do Desenvolvimento, USP, sabrinamiyahira@usp.br |  www.sites.usp.br/latecbio
+ 3. Departamento de Biologia Celular e do Desenvolvimento, USP, fsiviero@usp.br | www.sites.usp.br/latecbio
 
 🤝 _Projeto financiado pela Pró-Reitoria de Pesquisa e Inovação da Universade de São Paulo | www.prpi.usp.br_
 
