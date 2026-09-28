@@ -5,7 +5,7 @@
 
 * Maiores informações podem ser obtidas no site do grupo de pesquisa: www.sites.usp.br/latecbio
 
-##### Sobre os Modelos Falantes:
+##### Sobre o Labrador Falante:
 &#160;&#160;&#160;&#160;&#160;A Lei Brasileira de Inclusão define a deficiência pela interação entre impedimentos de longo prazo e barreiras que podem obstruir a participação plena e efetiva da pessoa. A Lei 14.768 de 2023 estabelece parâmetros específicos para a caracterização da deficiência auditiva. Em sala de aula, a distância do docente, reverberação, ruído de fundo, uso de máscara, necessidade de alternar a atenção entre slides e fala e variações na qualidade dos equipamentos podem reduzir a inteligibilidade da mensagem. A mesma situação também afeta estudantes sem deficiência declarada, especialmente em salas de grandes proporções, aulas extensas, aulas em segundo idioma, conteúdos com terminologia especializada e momentos de fadiga ou indisposição. 
 
 ##### Palavras-chave: 
