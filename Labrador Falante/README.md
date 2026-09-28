@@ -13,7 +13,7 @@
 
 ##### Equipe de desenvolvimento:
 
- &#160;&#160;&#160;&#160;&#160;, Dr. Kelliton José Mendonça Francisco <sup>1</sup>, Sabrina Miyahira <sup>2</sup>, _Prof. Dr. Fábio Siviero <sup>3</sup>_
+ &#160;&#160;&#160;&#160;&#160;Dr. Kelliton José Mendonça Francisco <sup>1</sup>, Sabrina Miyahira <sup>2</sup>, _Prof. Dr. Fábio Siviero <sup>3</sup>_
 
  
  1. Departamento de Biologia Celular e do Desenvolvimento, USP, kelliton@usp.br | www.sites.usp.br/mic
