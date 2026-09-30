@@ -1,0 +1,48 @@
+#include "Arduino.h"
+#include "driver/i2s.h"
+#include "plimSound.h"
+//#include "frontalSound.h"
+
+#define LRC 7
+#define BCLK 6
+#define DIN 8
+
+volatile bool stopAudio = false;
+
+void playInterruptible(void *pv) {
+    size_t written;
+    while(1) {
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        for (int i = 0; i < sizeof(plim)/2; i += 32) { // Envia em blocos
+            if (stopAudio) break;
+            i2s_write(I2S_NUM_0, &plim[i], 64, &written, portMAX_DELAY);
+        }
+        stopAudio = false;
+        delay(10000);
+    }
+}
+
+void setup() {
+    i2s_config_t i2s_config = {
+        .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_TX),
+        .sample_rate = 16000, 
+        .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
+        .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT,
+        .communication_format = I2S_COMM_FORMAT_STAND_I2S,
+        .dma_buf_count = 8, .dma_buf_len = 64
+    };
+    i2s_pin_config_t pin_config = { .bck_io_num = 6, .ws_io_num = 7, .data_out_num = 8 };
+    i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
+    i2s_set_pin(I2S_NUM_0, &pin_config);
+}
+
+void play_memory_audio() {
+    size_t bytes_written;
+    // Envia todo o array para o buffer DMA do 
+    i2s_write(I2S_NUM_0, &plim, sizeof(plim), &bytes_written, portMAX_DELAY);
+}
+
+void loop() {
+    play_memory_audio();
+    stopAudio = false;    
+}
