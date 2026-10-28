@@ -57,11 +57,13 @@ volatile bool bufferA_ready = false; // Indica se o Buffer A está cheio e pront
 volatile bool bufferB_ready = false; // Indica se o Buffer B está cheio e pronto para tocar
 volatile bool playing = false;       // Status da reprodução
 volatile float volume = 0.80;        // Volume de reprodução do audio (0.0 a 1.0)
+char valConfig ;
 
 int SensInput1, SensInput2, SensInput3, SensInput4, SensInput5, SensInput6, SensInput7;
 int timeTouch, valor;
-int flagcounter, flagInit = 0;
+int flagcounter, flagInit, flagInitBegin= 0;
 byte flagMenu = 0;
+
 
 long int time_1, time_0;
 int delayTimeTouch = 600; // Tempo de atraso para detecção de toque (em ms)
@@ -78,33 +80,33 @@ char meuArquivo_10[] = "/10.wav"; //Programação para ensino fundamental
 char meuArquivo_20[] = "/20.wav"; //Programaçao para exposições
 char meuArquivo_30[] = "/30.wav"; //Programacao tecnica superior
 
+//Arquivos para programação de ensino fundamental
 char meuArquivo_11[] = "/11.wav"; //Polpa
 char meuArquivo_12[] = "/12.wav"; //Dentina
 char meuArquivo_13[] = "/13.wav"; //Esmalte
 char meuArquivo_14[] = "/14.wav"; //Coroa
 char meuArquivo_15[] = "/15.wav"; //Raiz  
 
+//Arquivos para programação de exposições
 char meuArquivo_21[] = "/21.wav"; //Polpa
 char meuArquivo_22[] = "/22.wav"; //Dentina
 char meuArquivo_23[] = "/23.wav"; //Esmalte
 char meuArquivo_24[] = "/24.wav"; //Coroa
 char meuArquivo_25[] = "/25.wav"; //Raiz
 
+//Arquivos para programação de técnico/superior
 char meuArquivo_31[] = "/31.wav"; //Polpa
 char meuArquivo_32[] = "/32.wav"; //Dentina
 char meuArquivo_33[] = "/33.wav"; //Esmalte
 char meuArquivo_34[] = "/34.wav"; //Coroa
 char meuArquivo_35[] = "/35.wav"; //Raiz
 
-char track_0[7], track_9[7]; //descrição de sistema
+char track_0[7], track_9[7]; //descrição e estatus de sistema
 char track_1[7], track_2[7], track_3[7], track_4[7], track_5[7]; //arquivos de descrição
 
-
-long int tempo_0 = 0;
-long int tempo_atual;
-int intervalo = 5000; // Intervalo de tempo para o menu (em ms)
-
 File audioFile;
+File configMenu;
+
 hw_timer_t *timer = NULL;
 
 // Interrupção do Timer: APENAS consome a memória RAM
@@ -187,8 +189,6 @@ void tocarAudioSD(const char* nomeArquivo) {
   playing = false;
   
   if (audioFile) audioFile.close();
-  Serial.print("Tamanho do arquivo: ");
-  Serial.println(audioFile.size());
   
   audioFile = SD.open(nomeArquivo);
   if (!audioFile) {
@@ -212,6 +212,30 @@ void tocarAudioSD(const char* nomeArquivo) {
   Serial.println(nomeArquivo);
 }
 
+void readConfigFile(){
+  configMenu = SD.open("/config.txt",FILE_READ);
+  //Serial.println(configMenu);
+  if (configMenu) {
+    valConfig = configMenu.read();
+    configMenu.close();
+    Serial.print("valConfig lido: ");
+    Serial.println(valConfig);  
+
+  }
+}
+
+void writeConfigFile(char val){
+  configMenu = SD.open("/config.txt",FILE_WRITE);
+  if (configMenu) {
+    configMenu.write(val);
+    char retVal = configMenu.read();
+    Serial.print("valConfig escrito: ");
+    Serial.println(retVal);
+    configMenu.close();
+      
+  }
+}
+
 void disparoTest(int sensor, int touchPin, char *Arquivo, long int t0) {
   if (sensor == HIGH){
     do{
@@ -227,6 +251,55 @@ void disparoTest(int sensor, int touchPin, char *Arquivo, long int t0) {
   }
 }
 
+void fundamental(){
+      strcpy(track_1, meuArquivo_11);
+      strcpy(track_2, meuArquivo_12);
+      strcpy(track_3, meuArquivo_13);
+      strcpy(track_4, meuArquivo_14);
+      strcpy(track_5, meuArquivo_15); 
+}
+
+void exposicoes(){
+      strcpy(track_1, meuArquivo_21);
+      strcpy(track_2, meuArquivo_22);
+      strcpy(track_3, meuArquivo_23);
+      strcpy(track_4, meuArquivo_24);
+      strcpy(track_5, meuArquivo_25); 
+}
+
+void superior(){
+      strcpy(track_1, meuArquivo_31);
+      strcpy(track_2, meuArquivo_32);
+      strcpy(track_3, meuArquivo_33);
+      strcpy(track_4, meuArquivo_34);
+      strcpy(track_5, meuArquivo_35);
+}
+
+void confirmaOk(){
+
+  if (valConfig == 'F'){
+    fundamental();
+    writeConfigFile('F');
+  }
+  if (valConfig == 'E'){
+    exposicoes();
+    writeConfigFile('E');   
+  }
+  if (valConfig == 'S'){
+    superior();
+    writeConfigFile('S');
+  }
+  flagInit=1;
+  delay(1000);
+}
+
+void signalMenu(){
+  int i=0;
+  do{
+    audioFile.flush();
+  }while(i<250); 
+}
+
 void mainMenu(){
   SensInput1 = digitalRead(touchSensPin_1); 
   SensInput2 = digitalRead(touchSensPin_2); 
@@ -239,46 +312,32 @@ void mainMenu(){
     if(flagcounter > inter_1 && flagcounter < inter_2){
       Serial.println("Menu 1: ensino fundamental");
       tocarAudioSD(meuArquivo_10);
-      strcpy(track_1, meuArquivo_11);
-      strcpy(track_2, meuArquivo_12);
-      strcpy(track_3, meuArquivo_13);
-      strcpy(track_4, meuArquivo_14);
-      strcpy(track_5, meuArquivo_15); 
+      valConfig = 'F';
     }
 
     if(flagcounter > inter_2 && flagcounter < inter_3){
       Serial.println("Menu 2: exposições");
       tocarAudioSD(meuArquivo_20);
-      //strcpy(track_1, meuArquivo_21);
-      //strcpy(track_2, meuArquivo_22);
-      //strcpy(track_3, meuArquivo_23);
-      //strcpy(track_4, meuArquivo_24);
-      //strcpy(track_5, meuArquivo_25); 
+      valConfig = 'E';
     }
 
     if(flagcounter > inter_3 && flagcounter < inter_4){
-      Serial.println("Menu 3: tecnico/superior");
+      Serial.println("Menu 3: tecnico_superior");
       tocarAudioSD(meuArquivo_30);
-      //strcpy(track_1, meuArquivo_31);
-      //strcpy(track_2, meuArquivo_32);
-      //strcpy(track_3, meuArquivo_33);
-      //strcpy(track_4, meuArquivo_34);
-      //strcpy(track_5, meuArquivo_35);
+      valConfig = 'S';
     }
+
     if(flagcounter > inter_4){
       flagcounter = 0;
       
     }
   }
-  if (SensInput3 == HIGH){
-    Serial.println(flagInit);
-    Serial.println(flagcounter);
-    flagInit=1;
-    Serial.println(flagInit);
-    tocarAudioSD(meuArquivo_01);
 
-    delay(1000);
-    
+  //Comando "Enter"
+  if (SensInput3 == HIGH){
+    flagInit=1;
+    tocarAudioSD(meuArquivo_01);
+    confirmaOk();
   }
 }
 
@@ -290,15 +349,15 @@ void setup() {
   pinMode(touchSensPin_4, INPUT);
   pinMode(touchSensPin_5, INPUT);
 
-  tempo_0 = millis();
-
   Serial.begin(115200); 
   delay(5000);
   SPI.begin(SCK,MISO,MOSI,SS);
   if (SD.begin(SS)){
     Serial.println("SD Ok!!");
     SD.cardSize();
+    flagInitBegin=1;
   }
+
   // 3. Configuração do PWM (Igual ao seu original)
   ledcSetup(PWM_CHAN, PWM_FREQ, PWM_RES);
   ledcAttachPin(pwmDAC_amplif, PWM_CHAN);
@@ -310,7 +369,18 @@ void setup() {
   timerAlarmWrite(timer, 1000000 / SAMPLE_RATE, true);
   timerAlarmEnable(timer);
 
-  //tocarAudioSD(meuArquivo_0);
+  if(flagInitBegin==1){
+    readConfigFile();
+    if (valConfig == 'F'){
+    // tocarAudioSD(meuArquivo_10);
+    }
+    if (valConfig == 'E'){
+     tocarAudioSD(meuArquivo_20);
+    }
+    if (valConfig == 'S'){
+    // tocarAudioSD(meuArquivo_30);
+    }
+  }
 }
 
 void loop() {
@@ -325,28 +395,25 @@ void loop() {
     }
   }
 
-  //Menu da playlist
+  /*Le os sensores e armazena os valores*/
+  SensInput1 = digitalRead(touchSensPin_1); 
+  SensInput2 = digitalRead(touchSensPin_2); 
+  SensInput3 = digitalRead(touchSensPin_3); 
+  SensInput4 = digitalRead(touchSensPin_4); 
+  SensInput5 = digitalRead(touchSensPin_5);  
+  
   if(flagInit == 0){
-    mainMenu();
-  }
-  //Serial.println(flagInit);
-  if(flagInit == 1){
-    // Monitor Serial para disparar o áudio manualmente
-    if (Serial.available() > 0) {
-      Serial.println("Esperando cmd 'S' ");
-      char c = Serial.read();
-      if (c == 's' || c == 'S') {
-          tocarAudioSD(meuArquivo_00); // Lembrar da barra "/" indicando a raiz do SD
-        Serial.println("tocou plin...");
-      }
+    if(SensInput3 == HIGH){
+      confirmaOk();
+      delay(1000);   
     }
-    /*Le os sensores e armazena os valores*/
-    SensInput1 = digitalRead(touchSensPin_1); 
-    SensInput2 = digitalRead(touchSensPin_2); 
-    SensInput3 = digitalRead(touchSensPin_3); 
-    SensInput4 = digitalRead(touchSensPin_4); 
-    SensInput5 = digitalRead(touchSensPin_5); 
+    if(SensInput1 == HIGH && SensInput2 == HIGH){
+      mainMenu();  
+    }
+  } 
 
+  if(flagInit == 1){
+   
     if(SensInput1){
       disparoTest(SensInput1, touchSensPin_1, track_1, time_0);  
     }
