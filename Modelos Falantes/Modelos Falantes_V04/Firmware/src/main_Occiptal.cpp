@@ -56,7 +56,7 @@ volatile int buffer_ptr = 0;         // Posição atual dentro do buffer ativo
 volatile bool bufferA_ready = false; // Indica se o Buffer A está cheio e pronto para tocar
 volatile bool bufferB_ready = false; // Indica se o Buffer B está cheio e pronto para tocar
 volatile bool playing = false;       // Status da reprodução
-volatile float volume = 0.50;
+volatile float volume = 0.20;
 
 int SensInput1, SensInput2, SensInput3, SensInput4, SensInput5, SensInput6, SensInput7;
 int timeTouch, valor;
@@ -64,13 +64,10 @@ long int time_1, time_0;
 int delayTimeTouch = 600; // Tempo de atraso para detecção de toque (em ms)
 
 char meuArquivo_0[] = "/0.wav"; //plim
-char meuArquivo_1[] = "/1.wav"; //Occiptal
-char meuArquivo_2[] = "/2.wav"; //Occiptal
-char meuArquivo_3[] = "/3.wav"; //Occiptal
-//char meuArquivo_4[] = "/4.wav"; 
-//char meuArquivo_5[] = "/5.wav"; 
-//char meuArquivo_6[] = "/6.wav"; 
-//char meuArquivo_7[] = "/7.wav"; 
+char meuArquivo_1[] = "/1.wav"; //fossa cerebelar
+char meuArquivo_2[] = "/2.wav"; //fossa cerebral
+char meuArquivo_3[] = "/3.wav"; //seio sagital
+
 
 File audioFile;
 hw_timer_t *timer = NULL;
@@ -188,8 +185,6 @@ void disparoTest(int sensor, int touchPin, char *Arquivo, long int t0) {
       valor = digitalRead(touchPin);
     }while (valor == 1);
     timeTouch = time_1 - t0;
-    //Serial.println(t0);
-    Serial.println(timeTouch);
     if (timeTouch > delayTimeTouch) {
       Serial.println(Arquivo);
       tocarAudioSD(Arquivo);
@@ -202,10 +197,7 @@ void setup() {
   pinMode(touchSensPin_1, INPUT);
   pinMode(touchSensPin_2, INPUT);
   pinMode(touchSensPin_3, INPUT);
-  //pinMode(touchSensPin_4, INPUT);
-  //pinMode(touchSensPin_5, INPUT);
-  //pinMode(touchSensPin_6, INPUT);
-  //pinMode(touchSensPin_7, INPUT);
+
 
   Serial.begin(115200); 
   Serial.println(SensInput5);
@@ -254,16 +246,9 @@ void loop() {
   SensInput1 = digitalRead(touchSensPin_1); 
   SensInput2 = digitalRead(touchSensPin_2); 
   SensInput3 = digitalRead(touchSensPin_3); 
-  //SensInput4 = digitalRead(touchSensPin_4); 
-  //SensInput5 = digitalRead(touchSensPin_5); 
-  //SensInput6 = digitalRead(touchSensPin_6); 
-  //SensInput7 = digitalRead(touchSensPin_7); 
 
   disparoTest(SensInput1, touchSensPin_1, meuArquivo_1, time_0);
   disparoTest(SensInput2, touchSensPin_2, meuArquivo_2, time_0);
   disparoTest(SensInput3, touchSensPin_3, meuArquivo_3, time_0);
-  //disparoTest(SensInput4, touchSensPin_4, meuArquivo_4, time_0);
-  //disparoTest(SensInput5, touchSensPin_5, meuArquivo_5, time_0);
-  //disparoTest(SensInput6, touchSensPin_6, meuArquivo_6, time_0);
-  //disparoTest(SensInput7, touchSensPin_7, meuArquivo_7, time_0);
+
 }
